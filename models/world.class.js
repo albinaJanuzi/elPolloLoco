@@ -20,13 +20,14 @@ class World{
         this.draw();
     }
 
+    //Draw() wird immer wieder aufgerufen
     draw(){
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);//löschen
-
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);//canvas löschen
+        this.addObjectsToMap(this.backgroundObjects);//fügen Backgroud Objects to Map
         this.addToMap(this.character);//fügen Character to Map
         this.addObjectsToMap(this.enemies);//fügen Enemies to Map
         this.addObjectsToMap(this.clouds);//fügen Clouds to Map
-        this.addObjectsToMap(this.backgroundObjects);//fügen Backgroud Objects to Map
+        
 
         //Draw wird immer wieder aufgerufen
         let self = this;
