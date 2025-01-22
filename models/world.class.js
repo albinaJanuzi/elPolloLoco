@@ -18,6 +18,7 @@ class World{
     canvas;
     ctx;//abkürzung von context
     keyboard;
+    camera_x = 0; 
 
     constructor(canvas, keyboard){
         this.ctx = canvas.getContext('2d');
@@ -34,10 +35,12 @@ class World{
     //Draw() wird immer wieder aufgerufen
     draw(){
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);//canvas löschen
+        this.ctx.translate(this.camera_x, 0);//kamera nach links schieben
         this.addObjectsToMap(this.backgroundObjects);//fügen Backgroud Objects to Map
         this.addToMap(this.character);//fügen Character to Map
         this.addObjectsToMap(this.enemies);//fügen Enemies to Map
         this.addObjectsToMap(this.clouds);//fügen Clouds to Map
+        this.ctx.translate(-this.camera_x, 0);//kamera wieder nach rechts schieben
         
 
         //Draw wird immer wieder aufgerufen
