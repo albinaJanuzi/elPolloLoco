@@ -17,11 +17,18 @@ class World{
     ];
     canvas;
     ctx;//abkürzung von context
+    keyboard;
 
-    constructor(canvas){
+    constructor(canvas, keyboard){
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
+        this.keyboard = keyboard;
         this.draw();
+        this.setWorld();
+    }
+
+    setWorld(){
+        this.character.world = this;
     }
 
     //Draw() wird immer wieder aufgerufen
