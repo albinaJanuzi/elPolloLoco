@@ -32,7 +32,7 @@ class Character extends MovableObject {
                 this.x -= this.speed;
                 this.otherDirection = true;
             }
-            this.world.camera_x = -this.x;
+            this.world.camera_x = -this.x + 100;// Character 100px weiter nach Rechts sein
         }, 1000 / 60);// x60 pro Sek.
 
         setInterval(() => {
