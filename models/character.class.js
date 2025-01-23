@@ -49,6 +49,11 @@ class Character extends MovableObject {
                 this.otherDirection = true;
                 this.walking_sound.play();
             }
+
+            if (this.world.keyboard.UP && !this.isAboveGround()) {//jump nur wenn der Character im Boden ist
+                this.speedY = 30;
+            }
+
             this.world.camera_x = -this.x + 100;// Character 100px weiter nach Rechts sein
         }, 1000 / 60);// x60 pro Sek.
 
