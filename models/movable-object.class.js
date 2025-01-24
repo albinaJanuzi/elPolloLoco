@@ -10,6 +10,7 @@ class MovableObject {
     otherDirection = false;
     speedY = 0;
     acceleration = 2.5;
+    energy = 100;
 
     applyGravity() {
         setInterval(() => {
@@ -35,7 +36,7 @@ class MovableObject {
     }
 
     drawFrame(ctx){
-        if (this instanceof Character || this instanceof Chicken){
+        if (this instanceof Character || this instanceof Chicken){//draw Frame nur für Character und Chicken (nicht für Clouds, oder background)
             ctx.beginPath();
             ctx.lineWidth = '5';
             ctx.strokeStyle = 'blue';
