@@ -54,7 +54,7 @@ class MovableObject {
 
     hit(){
         this.energy -= 5;
-        if (this.energy < 0) {
+        if (this.energy < 0) {//Energy geht nicht unter 0
             this.energy = 0;
         }
     }
