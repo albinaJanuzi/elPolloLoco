@@ -1,0 +1,3 @@
+class EndbossHealthBar extends DrawableObject{
+    
+}
