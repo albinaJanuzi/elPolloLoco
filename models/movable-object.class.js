@@ -20,16 +20,6 @@ class MovableObject extends DrawableObject{
         return this.y < 180;
     }
 
-    drawFrame(ctx){
-        if (this instanceof Character || this instanceof Chicken){//draw Frame nur für Character und Chicken (nicht für Clouds, oder background)
-            ctx.beginPath();
-            ctx.lineWidth = '5';
-            ctx.strokeStyle = 'blue';
-            ctx.rect(this.x, this.y, this.width, this.height);
-            ctx.stroke();
-        }
-    }
-
     isColliding(mo){// is Colliding(chicken)
         return this.x + this.width > mo.x &&
         this.y + this.height > mo.y &&
