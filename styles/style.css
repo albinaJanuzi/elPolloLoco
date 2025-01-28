@@ -30,3 +30,27 @@ canvas{
     max-height: 100vh;
 }
 
+/*Smartphones width*/
+@media only screen and(max-width:720px){
+    canvas{
+        width: 100%;
+        height:auto;
+    }
+    h1{
+        display: none;
+    }
+   
+}
+
+/*Smartphones height*/
+@media only screen and (max-height:480px) {
+    canvas{
+        height: 100vh;
+        width:auto;
+    }
+
+    h1{
+        display: none;
+    }
+  
+}
