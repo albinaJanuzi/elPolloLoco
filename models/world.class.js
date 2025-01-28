@@ -6,6 +6,7 @@ class World {
     keyboard;
     camera_x = 0;
     statusBar = new StatusBar();
+    throwableObjects = [new ThrowableObject()];
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -37,6 +38,7 @@ class World {
 
         this.ctx.translate(this.camera_x, 0);//kamera nach links schieben
         this.addObjectsToMap(this.level.backgroundObjects);//fügen Backgroud Objects to Map
+        this.addObjectsToMap(this.throwableObjects);
 
         this.ctx.translate(-this.camera_x, 0);
         //Space for fixed objects
