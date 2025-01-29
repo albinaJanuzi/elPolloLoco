@@ -36,6 +36,11 @@ class World {
     }
 
     checkCollisions(){
+        this.collisionEnemy();
+        this.collisionBottles();
+    }
+
+    collisionEnemy(){
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
                 this.character.hit();
@@ -103,4 +108,14 @@ class World {
         mo.x = mo.x * -1;
         this.ctx.restore();
     }
+
+    collisionBottles() {
+        this.level.bottles.forEach(bottle => {
+            if (this.character.isColliding(bottle)) {
+                    let bottleIndex = this.level.bottles.indexOf(bottle);
+                    this.level.bottles.splice(bottleIndex, 1); 
+            }
+        });
+    }
+
 }

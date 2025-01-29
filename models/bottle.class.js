@@ -1,5 +1,5 @@
 class Bottle extends MovableObject {
-
+   
     IMAGES_GROUND = [
         '../img/6_salsa_bottle/1_salsa_bottle_on_ground.png',
         '../img/6_salsa_bottle/2_salsa_bottle_on_ground.png'
@@ -8,13 +8,8 @@ class Bottle extends MovableObject {
     y = 378;
     height = 60;
     width = 60;
-    offset = {
-        top: 10,
-        bottom: 10,
-        left: 15,
-        right: 10,
-    };
     isExploded = false;
+    static OFFSET = { top: 10, bottom: 10, left: 15, right: 10 };
 
     constructor() {
         super().loadImage('../img/6_salsa_bottle/1_salsa_bottle_on_ground.png');

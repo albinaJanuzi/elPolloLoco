@@ -18,7 +18,7 @@ draw(ctx){
 }
 
 drawFrame(ctx){
-    if (this instanceof Character || this instanceof Chicken){//draw Frame nur für Character und Chicken (nicht für Clouds, oder background)
+    if (this instanceof Character || this instanceof Chicken || this instanceof Bottle){//draw Frame nur für Character und Chicken (nicht für Clouds, oder background)
         ctx.beginPath();
         ctx.lineWidth = '5';
         ctx.strokeStyle = 'blue';
