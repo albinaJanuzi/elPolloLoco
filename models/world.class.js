@@ -9,8 +9,8 @@ class World {
     coinsBar = new CoinsBar();
     bottlesBar = new BottlesBar();
     throwableObjects = [];
-    coinsInventory = 0;
-    bottlesInventory = 0;
+    collectedCoins = 0;
+    collectedBottles = 0;
     lastThrowTime = 0;
 
     constructor(canvas, keyboard) {
@@ -32,17 +32,25 @@ class World {
             this.checkThrowObjects();
             this.checkThrowBottle();
             this.checkCoins();
+            this.checkBossActivation();
         }, 100);
         
     }
 
+    checkBossActivation() {
+        let endboss = this.level.enemies.find(enemy => enemy instanceof Endboss);
+        if (endboss && this.character.x > 2000) { // Adjust threshold if needed
+            endboss.firstContact = true;
+        }
+    }
+
     checkThrowBottle() {
         const currentThrowTime = new Date().getTime();
-        if (this.keyboard.D && this.bottlesInventory > 0 && currentThrowTime - this.lastThrowTime >= 750) {
+        if (this.keyboard.D && this.collectedBottles > 0 && currentThrowTime - this.lastThrowTime >= 750) {
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
             this.throwableObjects.push(bottle);
-            this.bottlesInventory -= 20;
-            this.bottlesBar.setPercentage(this.bottlesInventory);
+            this.collectedBottles -= 20;
+            this.bottlesBar.setPercentage(this.collectedBottles);
             this.lastThrowTime = currentThrowTime;
         }
     }
@@ -63,9 +71,9 @@ class World {
     collisionBottles() {
         this.level.bottles.forEach(bottle => {
             if (this.character.isColliding(bottle)) {
-                if (this.bottlesInventory < 100) {
-                    this.bottlesInventory += 20;
-                    this.bottlesBar.setPercentage(this.bottlesInventory);
+                if (this.collectedBottles < 100) {
+                    this.collectedBottles += 20;
+                    this.bottlesBar.setPercentage(this.collectedBottles);
                     let bottleIndex = this.level.bottles.indexOf(bottle);
                     this.level.bottles.splice(bottleIndex, 1);
                 }
@@ -89,8 +97,8 @@ class World {
     collisionCoins() {
         this.level.coins.forEach(coin => {
             if (this.character.isColliding(coin)) {
-                this.coinsInventory += 20;
-                this.coinsBar.setPercentage(this.coinsInventory);
+                this.collectedCoins += 20;
+                this.coinsBar.setPercentage(this.collectedCoins);
                 let coinIndex = this.level.coins.indexOf(coin);
                 this.level.coins.splice(coinIndex, 1);
             }
@@ -98,10 +106,10 @@ class World {
     }
 
     checkCoins() {
-        if (this.coinsInventory >= 100 && this.character.health < 100) {
-            this.coinsInventory = 0;
+        if (this.collectedCoins >= 100 && this.character.health < 100) {
+            this.collectedCoins = 0;
             this.character.recoverHealth();
-            this.coinsBar.setPercentage(this.coinsInventory);
+            this.coinsBar.setPercentage(this.collectedCoins);
             this.healthBar.setPercentage(this.character.health);
 
         }

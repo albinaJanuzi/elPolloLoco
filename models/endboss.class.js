@@ -3,6 +3,8 @@ class Endboss extends MovableObject{
     height = 400;
     width = 250;
     y = 55;
+    speed = 20; 
+    firstContact = false; 
 
     IMAGES_ALERT = [
         'img/4_enemie_boss_chicken/2_alert/G5.png',
@@ -43,15 +45,25 @@ class Endboss extends MovableObject{
     ];  
 
     constructor(){
-        super().loadImage(this.IMAGES_WALKING[0]);
+        super().loadImage(this.IMAGES_ALERT[0]);
         this.loadImages(this.IMAGES_WALKING);
+        this.loadImages(this.IMAGES_ALERT);
         this.x = 2500;
         this.animate();
     }
 
-    animate(){
+    animate() {
         setInterval(() => {
-            this.playAnimation(this.IMAGES_WALKING);
-    }, 200);
+            if (this.firstContact) {
+                this.moveLeft();
+                this.playAnimation(this.IMAGES_WALKING); // Start walking animation
+            } else {
+                this.playAnimation(this.IMAGES_ALERT); // Stays in alert mode
+            }
+        }, 200);
+    }
+
+    moveLeft() {
+        this.x -= this.speed; // Moves the boss to the left
     }
 }
