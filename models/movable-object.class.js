@@ -8,6 +8,9 @@ class MovableObject extends DrawableObject{
     coins = 0;
     lastHit = 0;
 
+
+
+
     offset = {
         top: 0,
         bottom: 0,
