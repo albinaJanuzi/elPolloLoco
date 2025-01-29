@@ -7,9 +7,11 @@ class World {
     camera_x = 0;
     statusBar = new StatusBar();
     coinsBar = new CoinsBar();
+    bottlesBar = new BottlesBar();
     throwableObjects = [];
-    lastThrowTime = 0;
     coinsInventory = 0;
+    bottlesInventory = 0;
+    lastThrowTime = 0;
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -31,15 +33,24 @@ class World {
             this.checkThrowBottle();
             this.checkCoins();
         }, 100);
+        
     }
 
     checkThrowBottle() {
         const currentThrowTime = new Date().getTime();
-        if (this.keyboard.D && currentThrowTime - this.lastThrowTime >= 750) {
+        if (this.keyboard.D && this.bottlesInventory > 0 && currentThrowTime - this.lastThrowTime >= 750) {
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
             this.throwableObjects.push(bottle);
+            this.bottlesInventory -= 20;
+            this.bottlesBar.setPercentage(this.bottlesInventory);
             this.lastThrowTime = currentThrowTime;
         }
+    }
+
+    checkCollisions(){
+        this.collisionEnemy();
+        this.collisionBottles();
+        this.collisionCoins();
     }
 
     checkThrowObjects(){
@@ -49,11 +60,20 @@ class World {
         }
     }
 
-    checkCollisions(){
-        this.collisionEnemy();
-        this.collisionBottles();
-        this.collisionCoins();
+    collisionBottles() {
+        this.level.bottles.forEach(bottle => {
+            if (this.character.isColliding(bottle)) {
+                if (this.bottlesInventory < 100) {
+                    this.bottlesInventory += 20;
+                    this.bottlesBar.setPercentage(this.bottlesInventory);
+                    let bottleIndex = this.level.bottles.indexOf(bottle);
+                    this.level.bottles.splice(bottleIndex, 1);
+                }
+            }
+        });
     }
+
+
 
     collisionEnemy(){
         this.level.enemies.forEach((enemy) => {
@@ -64,16 +84,7 @@ class World {
         });
     }
 
-    collisionBottles() {
-        this.level.bottles.forEach(bottle => {
-            if (this.character.isColliding(bottle)) {
 
-                    let bottleIndex = this.level.bottles.indexOf(bottle);
-                    this.level.bottles.splice(bottleIndex, 1);
-                }
-            
-        });
-    }
 
     collisionCoins() {
         this.level.coins.forEach(coin => {
@@ -110,6 +121,7 @@ class World {
         //Space for fixed objects
         this.addToMap(this.statusBar);
         this.addToMap(this.coinsBar);
+        this.addToMap(this.bottlesBar);
         this.ctx.translate(this.camera_x, 0);
 
         this.addToMap(this.character);//fügen Character to Map

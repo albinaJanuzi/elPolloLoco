@@ -7,10 +7,7 @@ class MovableObject extends DrawableObject{
     bottles = 0;
     coins = 0;
     lastHit = 0;
-
-
-
-
+    
     offset = {
         top: 0,
         bottom: 0,
