@@ -63,6 +63,7 @@ class World {
 
     checkThrowObjects(){
         this.checkBottleCollideWithEnemy();
+        this.checkBottleCollideWithGround();
     }
 
     checkBottleCollideWithEnemy() {
@@ -80,12 +81,24 @@ class World {
         });
     }
 
+    checkBottleCollideWithGround() {
+        this.throwableObjects.forEach(bottle => {
+            if (bottle.y > 374) {
+                bottle.animateSplash();
+                this.breakBottle_sound.play();
+                setTimeout(() => {
+                    this.throwableObjects.splice(bottle, 1);
+                }, 500);
+            }
+        });
+    }
+
     deleteEnemy(enemy) {
         enemy.health = 0;
         setTimeout(() => {
             let index = this.level.enemies.indexOf(enemy);
             this.level.enemies.splice(index, 1);
-        }, 100);
+        }, 1500);
     }
 
     collisionBottles() {
