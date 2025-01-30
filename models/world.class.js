@@ -2,25 +2,29 @@ class World {
     character = new Character();
     level = level1;
     canvas;
-    ctx;//abkürzung von context
+    ctx;
     keyboard;
     camera_x = 0;
     statusBar = new StatusBar();
     coinsBar = new CoinsBar();
     bottlesBar = new BottlesBar();
+    bossHealthBar = new EndbossHealthBar();
     throwableObjects = [];
     collectedCoins = 0;
     collectedBottles = 0;
     lastThrowTime = 0;
+    endboss; // Add this line
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = keyboard;
+        this.endboss = this.level.enemies.find(enemy => enemy instanceof Endboss); // Find the endboss
         this.draw();
         this.setWorld();
         this.run();
     }
+
 
     setWorld() {
         this.character.world = this;
@@ -59,11 +63,13 @@ class World {
         this.collisionEnemy();
         this.collisionBottles();
         this.collisionCoins();
+        this.collisionEndboss();
     }
 
     checkThrowObjects(){
         this.checkBottleCollideWithEnemy();
         this.checkBottleCollideWithGround();
+        this.checkBottleCollideWithEndboss();
     }
 
     checkBottleCollideWithEnemy() {
@@ -81,11 +87,24 @@ class World {
         });
     }
 
+    checkBottleCollideWithEndboss() {
+        this.throwableObjects.forEach((bottle) => {
+            if (bottle.isColliding(this.endboss) && !bottle.isExploded) {
+                bottle.isExploded = true;
+                bottle.animateSplash();
+                this.endboss.hit();
+                this.bossHealthBar.setPercentage(this.endboss.health);
+                setTimeout(() => {
+                    this.throwableObjects.splice(bottle, 1);
+                }, 80);
+            }
+        });
+    }
+
     checkBottleCollideWithGround() {
         this.throwableObjects.forEach(bottle => {
             if (bottle.y > 374) {
                 bottle.animateSplash();
-                this.breakBottle_sound.play();
                 setTimeout(() => {
                     this.throwableObjects.splice(bottle, 1);
                 }, 500);
@@ -125,6 +144,14 @@ class World {
         });
     }
 
+    collisionEndboss() {
+        let endboss = this.level.enemies.find(enemy => enemy instanceof Endboss);
+        if (endboss && this.character.isColliding(endboss)) {
+            this.character.hit();
+            this.healthBar.setPercentage(this.character.health);
+        }
+    }
+
 
 
     collisionCoins() {
@@ -143,7 +170,7 @@ class World {
             this.collectedCoins = 0;
             this.character.recoverHealth();
             this.coinsBar.setPercentage(this.collectedCoins);
-            this.healthBar.setPercentage(this.character.health);
+            this.statusBar.setPercentage(this.character.health);
 
         }
     }
@@ -170,7 +197,7 @@ class World {
         this.addObjectsToMap(this.level.clouds);//fügen Clouds to Map
 
         this.ctx.translate(-this.camera_x, 0);//kamera wieder nach rechts schieben
-
+        this.addBossHealthBar();
 
         //Draw wird immer wieder aufgerufen
         let self = this;
@@ -211,5 +238,13 @@ class World {
     }
 
 
+addBossHealthBar() {
+    if (this.endboss && this.character.x >= 2500) {
+        this.endboss.firstContact = true;
+    }
+    if (this.endboss && this.endboss.firstContact == true) {
+        this.addToMap(this.bossHealthBar);
+    }
+}
 
 }
