@@ -37,8 +37,24 @@ class World {
             this.checkThrowBottle();
             this.checkCoins();
             this.checkBossActivation();
+
         }, 100);
         
+    }
+
+    collisionEnemy() {
+        this.level.enemies.forEach(enemy => {
+            if (this.character.isColliding(enemy)) {
+                if (this.character.isAboveGround() && this.character.speedY <= 0) {
+                    this.deleteEnemy(enemy);
+                    this.character.jump();
+                }
+                else {
+                    this.character.hit();
+                    this.healthBar.setPercentage(this.character.health);
+                }
+            }
+        });
     }
 
     checkBossActivation() {
@@ -133,22 +149,11 @@ class World {
         });
     }
 
-
-
-    collisionEnemy(){
-        this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy)) {
-                this.character.hit();
-                this.statusBar.setPercentage(this.character.energy);
-            }
-        });
-    }
-
     collisionEndboss() {
         let endboss = this.level.enemies.find(enemy => enemy instanceof Endboss);
         if (endboss && this.character.isColliding(endboss)) {
             this.character.hit();
-            this.healthBar.setPercentage(this.character.health);
+            this.statusBar.setPercentage(this.character.health);
         }
     }
 

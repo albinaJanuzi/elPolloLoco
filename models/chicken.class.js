@@ -1,4 +1,4 @@
-class Chicken extends MovableObject {
+class Chicken extends MovableObject{
     multiplier = Math.random() * 50;
     speedY = 10;
     health = 100;
@@ -15,11 +15,14 @@ class Chicken extends MovableObject {
         'img/3_enemies_chicken/chicken_normal/1_walk/3_w.png'
     ];
 
-    IMAGES_DEAD = ['img/3_enemies_chicken/chicken_normal/2_dead/dead.png'];
+    IMAGES_DEAD = [
+        'img/3_enemies_chicken/chicken_normal/2_dead/dead.png'
+    ];
 
     constructor() {
-        super().loadImage(this.IMAGES_WALKING[0]); // Only load walking image initially
+        super().loadImage('img/3_enemies_chicken/chicken_normal/1_walk/1_w.png');
         this.loadImages(this.IMAGES_WALKING);
+        this.loadImages(this.IMAGES_DEAD);
         this.x = 500 + Math.random() * 2000;
         this.y = 350 - this.multiplier;
         this.height = 80 + this.multiplier;
@@ -27,7 +30,7 @@ class Chicken extends MovableObject {
         this.animate();
     }
 
-    animate() {
+    animate(){
         this.moveChicken();
         this.checkDead();
     }
@@ -35,36 +38,23 @@ class Chicken extends MovableObject {
     moveChicken() {
         this.walkingChicken = setInterval(() => {
             this.moveLeft();
-        }, 1000 / 60);
-
+        }, 1000 / 60); 
+        
         this.walkingChickenAnimation = setInterval(() => {
             this.playAnimation(this.IMAGES_WALKING);
         }, 150);
     }
 
     checkDead() {
-        let fallingInterval;
-    
-        // Only check for death every frame
         setInterval(() => {
             if (this.isDead()) {
-                if (!this.dead) {
-                    this.dead = true;
-                    this.loadImage(this.IMAGES_DEAD[0]);  // Load the dead image
-                    clearInterval(this.walkingChickenAnimation);  // Stop the walking animation
-                    clearInterval(this.walkingChicken);  // Stop the movement
-                    
-                    // Start the falling animation
-                    fallingInterval = setInterval(() => {
-                        if (this.y < 500) { // Adjust the ground level if needed
-                            this.y += this.speedY; // Apply falling
-                        } else {
-                            clearInterval(fallingInterval); // Stop falling once ground is reached
-                        }
-                    }, 50);
-                }
-            }
+                this.loadImage(this.IMAGES_DEAD);
+                clearInterval(this.walkingChickenAnimation)
+                clearInterval(this.walkingChicken)
+                setTimeout(() => {
+                    this.y += this.speedY;
+                }, 500);
+            };
         }, 50);
     }
-    
 }
