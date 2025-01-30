@@ -3,6 +3,12 @@ class Character extends MovableObject {
     height = 250;
     y = 80;
     speed = 10;
+    offset = {
+        top: 140,
+        bottom: 15,
+        left: 20,
+        right: 20,
+    };
 
     IMAGES_WALKING = [
         '../img/2_character_pepe/2_walk/W-21.png',
@@ -77,11 +83,11 @@ class Character extends MovableObject {
         }, 1000 / 60);// x60 pro Sek.
 
         setInterval(() => {
-            if(this.isDead()){
+            if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
-            }else if(this.isHurt()){
+            } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
-            }else if (this.isAboveGround()) {//wenn der character in luft befindet
+            } else if (this.isAboveGround()) {//wenn der character in luft befindet
                 this.playAnimation(this.IMAGES_JUMPING);//Jump Animation
             } else {
                 if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {

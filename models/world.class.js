@@ -62,7 +62,30 @@ class World {
     }
 
     checkThrowObjects(){
+        this.checkBottleCollideWithEnemy();
+    }
 
+    checkBottleCollideWithEnemy() {
+        this.throwableObjects.forEach((bottle) => {
+            this.level.enemies.forEach((enemy) => {
+                if (bottle.isColliding(enemy) && !bottle.isExploded) {
+                    bottle.isExploded = true;
+                    bottle.animateSplash();
+                    setTimeout(() => {
+                        this.throwableObjects.splice(bottle, 1);
+                    }, 80);
+                    this.deleteEnemy(enemy);
+                }
+            });
+        });
+    }
+
+    deleteEnemy(enemy) {
+        enemy.health = 0;
+        setTimeout(() => {
+            let index = this.level.enemies.indexOf(enemy);
+            this.level.enemies.splice(index, 1);
+        }, 100);
     }
 
     collisionBottles() {
