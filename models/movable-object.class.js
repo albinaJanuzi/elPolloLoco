@@ -3,7 +3,7 @@ class MovableObject extends DrawableObject{
     otherDirection = false;
     speedY = 0;
     acceleration = 2.5;
-    energy = 100;
+    health = 100;
     bottles = 0;
     coins = 0;
     lastHit = 0;
@@ -31,6 +31,7 @@ class MovableObject extends DrawableObject{
         }else{
             return this.y < 180;
         }
+
         
     }
 
@@ -42,11 +43,14 @@ class MovableObject extends DrawableObject{
     }
 
     hit(){
-        this.energy -= 5;
-        if (this.energy < 0) {//Energy geht nicht unter 0
-            this.energy = 0;
+        this.health -= 5;
+        if (this.health < 0) {//health geht nicht unter 0
+            this.health = 0;
         }else{
             this.lastHit = new Date().getTime();
+        }
+        if (this instanceof Endboss) {
+            this.health -= 20;
         }
     }
 
@@ -58,7 +62,7 @@ class MovableObject extends DrawableObject{
     }
 
     isDead(){
-        return this.energy == 0;
+        return this.health == 0;
     }
 
     playAnimation(images) {
@@ -79,4 +83,6 @@ class MovableObject extends DrawableObject{
     jump() {
         this.speedY = 30;
     }
+
+
 }

@@ -4,6 +4,7 @@ class Endboss extends MovableObject{
     width = 250;
     y = 55;
     speed = 20; 
+    health = 100;
     firstContact = false; 
 
     IMAGES_ALERT = [

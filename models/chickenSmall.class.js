@@ -30,6 +30,7 @@ class ChickenSmall extends MovableObject {
 
     animate() {
         this.moveChicken();
+        this.checkDead();
     }
 
     moveChicken() {
@@ -40,5 +41,18 @@ class ChickenSmall extends MovableObject {
         this.walkingChickenAnimation = setInterval(() => {
             this.playAnimation(this.IMAGES_WALKING);
         }, 150);
+    }
+
+    checkDead() {
+        setInterval(() => {
+            if (this.isDead()) {
+                this.loadImage(this.IMAGES_DEAD);
+                clearInterval(this.walkingChicken)
+                clearInterval(this.walkingChickenAnimation)
+                setTimeout(() => {
+                    this.y += this.speedY;
+                }, 500);
+            };
+        }, 50);
     }
 }
