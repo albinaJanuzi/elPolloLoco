@@ -41,22 +41,26 @@ class World {
         }, 100);
         
     }
-
     collisionEnemy() {
         this.level.enemies.forEach(enemy => {
             if (this.character.isColliding(enemy)) {
-                if (this.character.isAboveGround() && this.character.speedY <= 0) {
+                if (enemy instanceof Endboss) {
+                    // If colliding with Endboss, character takes damage instead
+                    this.character.hit();
+                    this.statusBar.setPercentage(this.character.health);
+                } else if (this.character.isAboveGround() && this.character.speedY <= 0) {
+                    // If jumping on a normal enemy, defeat it
                     this.deleteEnemy(enemy);
                     this.character.jump();
-                }
-                else {
+                } else {
+                    // If touching a normal enemy without jumping, take damage
                     this.character.hit();
-                    console.log(this.character.health);
                     this.statusBar.setPercentage(this.character.health);
                 }
             }
         });
     }
+    
 
     checkBossActivation() {
         let endboss = this.level.enemies.find(enemy => enemy instanceof Endboss);
@@ -104,11 +108,12 @@ class World {
         });
     }
 
+
     checkBottleCollideWithEndboss() {
         this.throwableObjects.forEach((bottle) => {
             if (bottle.isColliding(this.endboss) && !bottle.isExploded) {
                 bottle.isExploded = true;
-                bottle.animateSplash();
+                bottle.animateSplash(bottle);
                 this.endboss.hit();
                 this.bossHealthBar.setPercentage(this.endboss.health);
                 setTimeout(() => {
@@ -150,13 +155,6 @@ class World {
         });
     }
 
-    collisionEndboss() {
-        let endboss = this.level.enemies.find(enemy => enemy instanceof Endboss);
-        if (endboss && this.character.isColliding(endboss)) {
-            this.character.hit();
-            this.statusBar.setPercentage(this.character.health);
-        }
-    }
 
     collisionCoins() {
         this.level.coins.forEach(coin => {
@@ -169,6 +167,13 @@ class World {
         });
     }
 
+    collisionEndboss() {
+        if (this.endboss && this.character.isColliding(this.endboss)) {
+            this.character.hit(); // Character takes damage
+            this.statusBar.setPercentage(this.character.health);
+        }
+    }
+    
     checkCoins() {
         if (this.collectedCoins >= 100 && this.character.health < 100) {
             this.collectedCoins = 0;

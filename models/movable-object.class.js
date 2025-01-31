@@ -17,22 +17,27 @@ class MovableObject extends DrawableObject{
 
     applyGravity() {
         setInterval(() => {
+            // Only apply gravity if the character is in the air or falling
             if (this.isAboveGround() || this.speedY > 0) {
                 this.y -= this.speedY;
                 this.speedY -= this.acceleration;
             }
-        }, 1000 / 25);// x25 pro sek.
+    
+            // Reset speedY if the character hits the ground (adjust as needed for your game)
+            if (this.y >= 350) { // Example ground level (350), change as per your game
+                this.y = 350; // Set to ground level
+                this.speedY = 0; // Reset vertical speed after landing
+            }
+        }, 1000 / 25);
     }
 
     //Ist der Character in Boden?
     isAboveGround() {
-        if(this instanceof ThrowableObject){//Throwable Objects müssen immer wieder fallen
+        if (this instanceof ThrowableObject) { // Throwable Objects always fall
             return true;
-        }else{
-            return this.y < 180;
+        } else {
+            return this.y < 180; // Adjust this threshold as needed
         }
-
-        
     }
 
     isColliding(mo) {
@@ -87,7 +92,10 @@ class MovableObject extends DrawableObject{
     }
 
     jump() {
-        this.speedY = 30;
+        if (this.isAboveGround()) {
+            return; // Don't jump if already in the air
+        }
+        this.speedY = 30; // Adjust jump strength
     }
 
     recoverHealth() {
