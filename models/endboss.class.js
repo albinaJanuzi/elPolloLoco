@@ -47,24 +47,36 @@ class Endboss extends MovableObject{
 
     constructor(){
         super().loadImage(this.IMAGES_ALERT[0]);
-        this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_ALERT);
+        this.loadImages(this.IMAGES_WALKING);
+        this.loadImages(this.IMAGES_ATTACK);
+        this.loadImages(this.IMAGES_HURT);
+        this.loadImages(this.IMAGES_DEAD);
+
         this.x = 2500;
         this.animate();
     }
 
-    animate() {
+    animate() {// & shows WIn Sreen if Endboss Died
         setInterval(() => {
-            if (this.firstContact) {
-                this.moveLeft();
-                this.playAnimation(this.IMAGES_WALKING); // Start walking animation
-            } else {
-                this.playAnimation(this.IMAGES_ALERT); // Stays in alert mode
-            }
-        }, 200);
-    }
+             if (this.isHurt() && !this.isDead()) {
+                 this.playAnimation(this.IMAGES_HURT);
+             } else if (this.isDead()) {
+                 this.speed = 0;
+                 this.playAnimation(this.IMAGES_DEAD);              
+             } else if (this.firstContact) {
+                 this.bossAppears();
+             } else {
+                 this.playAnimation(this.IMAGES_ALERT);
+             }
+         }, 200);
+     }
+ 
+     bossAppears() {
+         this.playAnimation(this.IMAGES_WALKING);
+         this.moveLeft();
+         setTimeout(() => {
+         }, 5000);
+     }
+ }
 
-    moveLeft() {
-        this.x -= this.speed; // Moves the boss to the left
-    }
-}

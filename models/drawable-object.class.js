@@ -8,14 +8,20 @@ class DrawableObject{
     width = 100;
 
 
-loadImage(path) {
-    this.img = new Image(); // gleich wie document.getElementbyId
-    this.img.src = path;
-}
+    loadImage(path) {
+        this.img = new Image();
+        this.img.src = path;
+        this.img.onload = () => console.log(`Loaded: ${path}`);
+        this.img.onerror = () => console.error(`Error loading image: ${path}`);
+    }
 
-draw(ctx){
-    ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
-}
+    draw(ctx) {
+        if (this.img && this.img.complete) { 
+            ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
+        } else {
+            console.error("Image not loaded yet:", this);
+        }
+    }
 
 drawFrame(ctx) {
     if (this instanceof Character || this instanceof Chicken || this instanceof ChickenSmall
@@ -51,7 +57,8 @@ loadImages(arr) {
     arr.forEach((path) => {
         let img = new Image();
         img.src = path;
-        img.style = 'transform: scaleX(-1)'
+        img.onload = () => console.log(`Loaded: ${path}`);
+        img.onerror = () => console.error(`Error loading image: ${path}`);
         this.imageCache[path] = img;
     });
 }

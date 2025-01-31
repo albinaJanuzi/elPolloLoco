@@ -66,9 +66,15 @@ class MovableObject extends DrawableObject{
     }
 
     playAnimation(images) {
-        let i = this.currentImage % images.length;//i=0,1,2,3,4,5,0,1,2,3..., weil let i=6 % 6
+        let i = this.currentImage % images.length;
         let path = images[i];
-        this.img = this.imageCache[path];
+    
+        if (this.imageCache[path]) {
+            this.img = this.imageCache[path];
+        } else {
+            console.error("Image not found in cache:", path);
+        }
+        
         this.currentImage++;
     }
 
