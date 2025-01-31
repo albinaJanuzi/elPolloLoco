@@ -102,26 +102,42 @@ class World {
                     setTimeout(() => {
                         this.throwableObjects.splice(bottle, 1);
                     }, 80);
-                    this.deleteEnemy(enemy);
+    
+                    if (enemy instanceof Endboss) {
+                        // Increment hit counter for Endboss
+                        enemy.hitCounter = (enemy.hitCounter || 0) + 1;
+                        if (enemy.hitCounter >= 4) {
+                            this.deleteEnemy(enemy);
+                        }
+                    } else {
+                        // Kill regular enemies (chickens) on the first hit
+                        this.deleteEnemy(enemy);
+                    }
                 }
             });
         });
     }
-
 
     checkBottleCollideWithEndboss() {
         this.throwableObjects.forEach((bottle) => {
             if (bottle.isColliding(this.endboss) && !bottle.isExploded) {
                 bottle.isExploded = true;
                 bottle.animateSplash(bottle);
-                this.endboss.hit();
-                this.bossHealthBar.setPercentage(this.endboss.health);
+                this.endboss.hit();  // Decrease health of Endboss
+                this.bossHealthBar.setPercentage(this.endboss.health);  // Update health bar
+    
                 setTimeout(() => {
-                    this.throwableObjects.splice(bottle, 1);
+                    this.throwableObjects.splice(this.throwableObjects.indexOf(bottle), 1); // Properly remove the bottle
                 }, 80);
+    
+                // Delete Endboss after 4 hits
+                if (this.endboss.hitCounter >= 4) {
+                    this.deleteEnemy(this.endboss);
+                }
             }
         });
     }
+    
 
     checkBottleCollideWithGround() {
         this.throwableObjects.forEach(bottle => {
@@ -173,7 +189,7 @@ class World {
             this.statusBar.setPercentage(this.character.health);
         }
     }
-    
+
     checkCoins() {
         if (this.collectedCoins >= 100 && this.character.health < 100) {
             this.collectedCoins = 0;
@@ -181,6 +197,15 @@ class World {
             this.coinsBar.setPercentage(this.collectedCoins);
             this.statusBar.setPercentage(this.character.health);
 
+        }
+    }
+    
+    addBossHealthBar() {
+        if (this.endboss && this.character.x >= 2500) { // When the character reaches the Endboss
+            this.endboss.firstContact = true;
+        }
+        if (this.endboss && this.endboss.firstContact) {
+            this.addToMap(this.bossHealthBar); // Draw the health bar if Endboss is present
         }
     }
     
@@ -199,6 +224,7 @@ class World {
         this.addToMap(this.statusBar);
         this.addToMap(this.coinsBar);
         this.addToMap(this.bottlesBar);
+        this.addBossHealthBar();
         this.ctx.translate(this.camera_x, 0);
 
         this.addToMap(this.character);//fügen Character to Map
@@ -206,7 +232,7 @@ class World {
         this.addObjectsToMap(this.level.clouds);//fügen Clouds to Map
 
         this.ctx.translate(-this.camera_x, 0);//kamera wieder nach rechts schieben
-        this.addBossHealthBar();
+        
 
         //Draw wird immer wieder aufgerufen
         let self = this;
@@ -246,14 +272,5 @@ class World {
         this.ctx.restore();
     }
 
-
-addBossHealthBar() {
-    if (this.endboss && this.character.x >= 2500) {
-        this.endboss.firstContact = true;
-    }
-    if (this.endboss && this.endboss.firstContact == true) {
-        this.addToMap(this.bossHealthBar);
-    }
-}
 
 }

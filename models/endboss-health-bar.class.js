@@ -1,5 +1,5 @@
 class EndbossHealthBar extends DrawableObject{
-    IMAGES_LIVE = [
+    IMAGES = [
         'img/7_statusbars/2_statusbar_endboss/blue/blue0.png',
         'img/7_statusbars/2_statusbar_endboss/blue/blue20.png',
         'img/7_statusbars/2_statusbar_endboss/blue/blue40.png',
@@ -12,18 +12,19 @@ class EndbossHealthBar extends DrawableObject{
 
     constructor() {
         super();
-        this.loadImages(this.IMAGES_LIVE);
+        this.loadImages(this.IMAGES);
         this.x = 500;
         this.y = 0;
         this.width = 200;
         this.height = 60;
         this.setPercentage(100);
+        
     }
 
     setPercentage(percentage) {
         this.percentage = percentage;
-        let path = this.IMAGES_LIVE[this.resolveImageIndex()];
-        this.img = this.imageCache[path];
+        let path = this.IMAGES[this.resolveImageIndex()];  // Get the correct image for health percentage
+        this.img = this.imageCache[path];  // Update the health bar image
     }
  
     resolveImageIndex() {

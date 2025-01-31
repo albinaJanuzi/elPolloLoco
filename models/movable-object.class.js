@@ -54,10 +54,12 @@ class MovableObject extends DrawableObject{
         }else{
             this.lastHit = new Date().getTime();
         }
+        this.hitCounter++;
         if (this instanceof Endboss) {
             this.health -= 20;
         }
     }
+
 
     isHurt(){
         //let timepassed = new Date().getTime() - this.lastHit; // Difference in ms
