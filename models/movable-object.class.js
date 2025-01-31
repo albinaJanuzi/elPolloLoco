@@ -84,5 +84,11 @@ class MovableObject extends DrawableObject{
         this.speedY = 30;
     }
 
-
+    recoverHealth() {
+        let healthRegen = 20;
+        let newHealth = this.health + healthRegen;
+        if (newHealth >= 100) {
+            this.health = 100
+        } else this.health += 20;
+    }
 }

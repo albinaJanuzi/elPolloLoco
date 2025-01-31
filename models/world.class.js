@@ -172,6 +172,7 @@ class World {
     checkCoins() {
         if (this.collectedCoins >= 100 && this.character.health < 100) {
             this.collectedCoins = 0;
+            this.character.recoverHealth();
             this.coinsBar.setPercentage(this.collectedCoins);
             this.statusBar.setPercentage(this.character.health);
 
