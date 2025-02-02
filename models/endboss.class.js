@@ -1,12 +1,16 @@
 class Endboss extends MovableObject{
-
-    height = 400;
-    width = 250;
-    y = 55;
-    speed = 20; 
+    y = 5;
+    height = 450;
+    width = 350;
+    speed = 20;
     health = 100;
-    firstContact = false; 
-    hitCounter = 0;
+    firstContact = false;
+    offset = {
+        top: 80,
+        bottom: 15,
+        left: 20,
+        right: 10,
+    };
 
     IMAGES_ALERT = [
         'img/4_enemie_boss_chicken/2_alert/G5.png',
@@ -19,7 +23,7 @@ class Endboss extends MovableObject{
         'img/4_enemie_boss_chicken/2_alert/G11.png',
         'img/4_enemie_boss_chicken/2_alert/G12.png'
     ];
-    IMAGES_WALKING = [
+    IMAGES_WALK = [
         'img/4_enemie_boss_chicken/1_walk/G1.png',
         'img/4_enemie_boss_chicken/1_walk/G2.png',
         'img/4_enemie_boss_chicken/1_walk/G3.png',
@@ -46,38 +50,35 @@ class Endboss extends MovableObject{
         'img/4_enemie_boss_chicken/5_dead/G26.png'
     ];  
 
-    constructor(){
+    constructor() {
         super().loadImage(this.IMAGES_ALERT[0]);
         this.loadImages(this.IMAGES_ALERT);
-        this.loadImages(this.IMAGES_WALKING);
+        this.loadImages(this.IMAGES_WALK);
         this.loadImages(this.IMAGES_ATTACK);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DEAD);
 
-        this.x = 2500;
-        this.animate();
+        this.x = 3000;
+         this.animateEndboss();
     }
 
-    animate() {// & shows WIn Sreen if Endboss Died
-        setInterval(() => {
-             if (this.isHurt() && !this.isDead()) {
-                 this.playAnimation(this.IMAGES_HURT);
-             } else if (this.isDead()) {
-                 this.speed = 0;
-                 this.playAnimation(this.IMAGES_DEAD);              
-             } else if (this.firstContact) {
-                 this.bossAppears();
-             } else {
-                 this.playAnimation(this.IMAGES_ALERT);
-             }
-         }, 200);
-     }
- 
-     bossAppears() {
-         this.playAnimation(this.IMAGES_WALKING);
-         this.moveLeft();
-         setTimeout(() => {
-         }, 5000);
-     }
- }
+    animateEndboss() {
+       setInterval(() => {
+            if (this.isHurt() && !this.isDead()) {
+                this.playAnimation(this.IMAGES_HURT);
+            } else if (this.isDead()) {
+                this.speed = 0;
+                this.playAnimation(this.IMAGES_DEAD);            
+            } else if (this.firstContact) {
+                this.bossAppears();
+            } else {
+                this.playAnimation(this.IMAGES_ALERT);
+            }
+        }, 200);
+    }
 
+    bossAppears() {
+        this.playAnimation(this.IMAGES_WALK);
+        this.moveLeft();
+    }
+}
