@@ -84,7 +84,6 @@ class Character extends MovableObject {
         this.loadImages(this.IMAGES_JUMPING);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DEAD);
-
         this.applyGravity();
         this.animate();
     }
@@ -100,16 +99,13 @@ class Character extends MovableObject {
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                 this.moveRight();
                 this.otherDirection = false;
-
             }
             if (this.world.keyboard.LEFT && this.x > 100) {
                 this.moveLeft();
                 this.otherDirection = true;
-
             }
             if (this.world.keyboard.SPACE && !this.isAboveGround()) {
                 this.jump();
-
             }
             this.world.camera_x = -this.x + 100;
         }, 1000 / 60);
@@ -119,10 +115,8 @@ class Character extends MovableObject {
         setInterval(() => {
             if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
-
             } else if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
-
             } else if (this.isAboveGround()) {
                 this.updateMoveTime();
                 this.playAnimation(this.IMAGES_JUMPING);
@@ -137,12 +131,12 @@ class Character extends MovableObject {
         }, 100);
     }
 
-    updateMoveTime() {//last time character moving
+    updateMoveTime() {
         let currentTime = new Date().getTime();
         this.lastMoveTime = currentTime;
     }
 
-    sleepTime() {//passedTime after last move
+    sleepTime() {
         let passedTime = new Date().getTime() - this.lastMoveTime;
         return passedTime > 8000;
     }
