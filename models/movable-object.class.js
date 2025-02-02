@@ -2,12 +2,12 @@ class MovableObject extends DrawableObject{
     speed = 0.15;
     otherDirection = false;
     speedY = 0;
-    acceleration = 2.5;
+    accleration = 2.5;
     health = 100;
-    bottles = 0;
     coins = 0;
+    bottles = 0;
     lastHit = 0;
-    
+
     offset = {
         top: 0,
         bottom: 0,
@@ -17,26 +17,21 @@ class MovableObject extends DrawableObject{
 
     applyGravity() {
         setInterval(() => {
-            // Only apply gravity if the character is in the air or falling
             if (this.isAboveGround() || this.speedY > 0) {
                 this.y -= this.speedY;
-                this.speedY -= this.acceleration;
+                this.speedY -= this.accleration;
             }
-    
-            // Reset speedY if the character hits the ground (adjust as needed for your game)
-            if (this.y >= 350) { // Example ground level (350), change as per your game
-                this.y = 350; // Set to ground level
-                this.speedY = 0; // Reset vertical speed after landing
+            if (this.y > 72 && this instanceof Character) {
+                this.y = 72;
             }
         }, 1000 / 25);
     }
 
-    //Ist der Character in Boden?
     isAboveGround() {
-        if (this instanceof ThrowableObject) { // Throwable Objects always fall
+        if ((this instanceof ThrowableObject)) { 
             return true;
         } else {
-            return this.y < 180; // Adjust this threshold as needed
+            return this.y < 72;
         }
     }
 
@@ -47,57 +42,16 @@ class MovableObject extends DrawableObject{
             this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom;
     }
 
-    hit(){
+    hit() {
         this.health -= 5;
-        if (this.health < 0) {//health geht nicht unter 0
+        if (this.health < 0) {
             this.health = 0;
-        }else{
+        } else {
             this.lastHit = new Date().getTime();
         }
-        this.hitCounter++;
         if (this instanceof Endboss) {
             this.health -= 20;
         }
-    }
-
-
-    isHurt(){
-        //let timepassed = new Date().getTime() - this.lastHit; // Difference in ms
-        let timepassed = (new Date().getTime() - this.lastHit)/1000;
-        timepassed - timepassed / 1000; // Difference in s
-        return timepassed < 1;
-    }
-
-    isDead(){
-        return this.health == 0;
-    }
-
-    playAnimation(images) {
-        let i = this.currentImage % images.length;
-        let path = images[i];
-    
-        if (this.imageCache[path]) {
-            this.img = this.imageCache[path];
-        } else {
-            console.error("Image not found in cache:", path);
-        }
-        
-        this.currentImage++;
-    }
-
-    moveRight() {
-        this.x += this.speed;
-    }
-
-    moveLeft() {
-            this.x -= this.speed;   
-    }
-
-    jump() {
-        if (this.isAboveGround()) {
-            return; // Don't jump if already in the air
-        }
-        this.speedY = 30; // Adjust jump strength
     }
 
     recoverHealth() {
@@ -107,4 +61,34 @@ class MovableObject extends DrawableObject{
             this.health = 100
         } else this.health += 20;
     }
+
+    isHurt() {
+        let timePassed = new Date().getTime() - this.lastHit; 
+        timePassed = timePassed / 1000; 
+        return timePassed < 1;
+    }
+
+    isDead() {
+        return this.health == 0;
+    }
+
+    playAnimation(images) {
+        let i = this.currentImage % images.length;
+        let path = images[i];
+        this.img = this.imageCache[path];
+        this.currentImage++;
+    }
+
+    moveRight() {
+        this.x += this.speed;
+    }
+
+    moveLeft() {
+        this.x -= this.speed;
+    }
+
+    jump() {
+        this.speedY = 30;
+    }
+
 }
