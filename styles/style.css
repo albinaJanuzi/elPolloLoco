@@ -30,6 +30,10 @@ canvas{
     max-height: 100vh;
 }
 
+.d-none {
+    display: none;
+}
+
 /*Smartphones width*/
 @media only screen and(max-width:720px){
     canvas{

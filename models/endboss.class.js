@@ -68,7 +68,10 @@ class Endboss extends MovableObject{
                 this.playAnimation(this.IMAGES_HURT);
             } else if (this.isDead()) {
                 this.speed = 0;
-                this.playAnimation(this.IMAGES_DEAD);            
+                this.playAnimation(this.IMAGES_DEAD);
+                setTimeout(() => {
+                    winGame();
+                }, 2000);               
             } else if (this.firstContact) {
                 this.bossAppears();
             } else {

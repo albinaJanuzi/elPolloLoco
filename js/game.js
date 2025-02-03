@@ -1,67 +1,48 @@
 let canvas;
+let ctx;
 let world;
 let keyboard = new Keyboard();
+let sounds = [];
+let isMuted = false;
 
-function init(){
-    canvas = document.getElementById('canvas');
-    world = new World(canvas, keyboard);
-    console.log('My character is ', world.character);
+
+function startGame() {
+    document.getElementById('startScreen').classList.add('d-none');
+    document.getElementById('winScreen').classList.add('d-none');
+    document.getElementById('loseScreen').classList.add('d-none');
+    document.getElementById('iconBar').classList.remove('d-none');
+ 
+    
+    initLevel();
+    initGame();
+
+
+
 }
 
-document.addEventListener("keydown", (e) => {//wenn wir die Taste drücken
-    if (e.keyCode == 39) {
-        keyboard.RIGHT = true;
-    }
+function initGame() {
+    canvas = document.getElementById('canvas');
+    canvas.classList.remove('d-none');
+    world = new World(canvas, keyboard);
+}
 
-    if (e.keyCode == 37) {
-        keyboard.LEFT = true;
-    }
+function loseGame() {
+    document.getElementById('canvas').classList.add('d-none');
+    document.getElementById('iconBar').classList.add('d-none');
+    document.getElementById('mobileHud').classList.add('d-none');
+    document.getElementById('loseScreen').classList.remove('d-none');
+    for (let i = 1; i < 99999; i++) window.clearInterval(i);
+}
 
-    if (e.keyCode == 38) {
-        keyboard.UP = true;
-    }
+function winGame() {
+    document.getElementById('canvas').classList.add('d-none');
+    document.getElementById('iconBar').classList.add('d-none');
+    document.getElementById('winScreen').classList.remove('d-none');
+    for (let i = 1; i < 99999; i++) window.clearInterval(i);
+}
 
-    if (e.keyCode == 40) {
-        keyboard.DOWN = true;
-    }
 
-    if (e.keyCode == 32) {
-        keyboard.SPACE = true;
-    }
 
-    if (e.keyCode == 68) {
-        keyboard.D = true;
-    }
 
-    
-    console.log(e);
-});
 
-document.addEventListener("keyup", (e) => {//wenn wir die Taste los lassen dann alle false
-    if (e.keyCode == 39) {
-        keyboard.RIGHT = false;
-    }
 
-    if (e.keyCode == 37) {
-        keyboard.LEFT = false;
-    }
-
-    if (e.keyCode == 38) {
-        keyboard.UP = false;
-    }
-
-    if (e.keyCode == 40) {
-        keyboard.DOWN = false;
-    }
-
-    if (e.keyCode == 32) {
-        keyboard.SPACE = false;
-    }
-
-    if (e.keyCode == 68) {
-        keyboard.D = false;
-    }
-
-    
-    console.log(e);
-});
