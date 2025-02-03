@@ -46,6 +46,19 @@ canvas{
    
 }
 
+.btnBar {
+    position: absolute;
+    top: 36%;
+    left: 51%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.695);
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    color: white;
+    font-size: 24px;
+}
+
 /*Smartphones height*/
 @media only screen and (max-height:480px) {
     canvas{
