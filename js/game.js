@@ -26,14 +26,15 @@ function initGame() {
 function loseGame() {
     document.getElementById('canvas').classList.add('d-none');
     document.getElementById('loseScreen').classList.remove('d-none');
-    document.getElementById('mobileHud').classList.remove('d-none');
-    for (let i = 1; i < 99999; i++) window.clearInterval(i);
+    document.getElementById('mobileHud').classList.add('d-none');
+    for (let i = 1; i < 99999; i++) window.clearInterval(i);//this helps to get to a new game
 }
 
 function winGame() {
     document.getElementById('canvas').classList.add('d-none');
     document.getElementById('winScreen').classList.remove('d-none');
-    for (let i = 1; i < 99999; i++) window.clearInterval(i);
+    document.getElementById('mobileHud').classList.add('d-none');
+    for (let i = 1; i < 99999; i++) window.clearInterval(i);//this helps to get to a new game
 }
 
 

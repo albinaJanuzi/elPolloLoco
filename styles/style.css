@@ -295,6 +295,7 @@ footer {
 }
 
 @media (orientation: portrait) and (max-width: 600px) {
+
     #deviceNotice {
         display: flex;
     }
