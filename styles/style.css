@@ -3,71 +3,201 @@
     src: url('../fonts/zabars.ttf') format('truetype'); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
 }  
 
-body{
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+body {
+    height: 100vh;
+    padding-top: 50px;
     display: flex;
-    justify-content: center;
     flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
-    min-height: 100vh;
-    margin:0;
+    font-family: 'zabras', Arial, Helvetica, sans-serif;
+    font-size: 32px;
     background-image: url('../img/desert.png');
     background-position: center;
     background-size: cover;
-    font-family: 'zabras', Arial, Helvetica, sans-serif;
-    height: 100vh;
+    background-repeat: no-repeat;
 }
 
-h1{
-    font-size: 64px;
-    letter-spacing: 3px;
-    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
-}
-
-canvas{
-    background-color: black;
+canvas {
     display: block;
-    max-width: 100%; /* Ensures it scales properly */
-    max-height: 100vh;
+}
+
+h1 {
+    font-size: 64px;
+    letter-spacing: 5px;
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
+    color: black;
+    margin-bottom: 32px;
+}
+
+.mainContent {
+    position: relative;
+    /* display: flex; */
+    /* flex-direction: row; */
+}
+
+.screenBorder {
+    border-radius: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.btnBar {
+    width: 100%;
+    position: absolute;
+    top: 50px;
+    display: flex;
+    gap: 50px;
+    justify-content: center;
+
+    div,
+    span {
+        font-size: 42px;
+        color: #FFCC00;
+        letter-spacing: 2px;
+    }
+
+    span {
+        filter: drop-shadow(5px 5px 5px #222);
+    }
+
+    div:hover,
+    span:hover {
+        cursor: pointer;
+        transform: scale(1.1);
+    }
+}
+
+h2 {
+    font-size: 42px;
+    letter-spacing: 2px;
+    font-weight: 500;
+    text-decoration: underline;
 }
 
 .d-none {
     display: none;
 }
 
-/*Smartphones width*/
-@media only screen and(max-width:720px){
-    canvas{
-        width: 100%;
-        height:auto;
-    }
-    h1{
-        display: none;
-    }
-   
+.controllBar {
+    display: flex;
+    justify-content: center;
+    width: 720px;
+    gap: 50px;
+    padding-top: 20px;
 }
 
-.btnBar {
+
+
+.mobileHud {
+    width: 100%;
+    padding: 0 10px 10px 10px;
     position: absolute;
-    top: 36%;
-    left: 51%;
-    transform: translate(-50%, -50%);
-    background: rgba(0, 0, 0, 0.695);
-    padding: 10px 20px;
-    border-radius: 10px;
-    cursor: pointer;
-    color: white;
-    font-size: 24px;
+    bottom: 0;
+    left: 0;
 }
 
-/*Smartphones height*/
-@media only screen and (max-height:480px) {
-    canvas{
-        height: 100vh;
-        width:auto;
+.hudPosition {
+    display: flex;
+    justify-content: space-between;
+
+    div {
+        display: flex;
+        gap: 10px;
+    }
+}
+
+.mobileBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 223, 2, 0.0);
+    border: unset;
+    height: 36px;
+
+    img {
+        height: 36px;
+    }
+}
+
+#deviceNotice {
+    background-image: url('../img/desert.png');
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+    display: none;
+
+    img {
+        height: 120px;
     }
 
-    h1{
+    span {
+        font-size: 34px;
+    }
+}
+
+
+@media only screen and (max-width:720px) {
+
+    .mainContent,
+    .screenBorder,
+    canvas {
+        width: 100%;
+    }
+
+    h1,
+    .controllBar,
+    footer {
         display: none;
     }
-  
+}
+
+@media only screen and (min-width:1024px) and (max-height:750px) {
+
+    footer {
+        display: none;
+    }
+}
+
+@media only screen and (max-height:480px) {
+
+    body,
+    .mainContent,
+    .screenBorder,
+    canvas {
+        height: 100vh;
+        padding: 0;
+        /* overflow-y: hidden; */
+    }
+
+    h1,
+    #fullscreen,
+    .controllBar,
+    footer {
+        display: none;
+    }
+
+    #startScreen,
+    #winScreen,
+    #loseScreen {
+        height: 100%;
+    }
+
+}
+
+@media (orientation: portrait) and (max-width: 600px) {
+    #deviceNotice {
+        display: flex;
+    }
 }

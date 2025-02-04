@@ -10,12 +10,11 @@ function startGame() {
     document.getElementById('startScreen').classList.add('d-none');
     document.getElementById('winScreen').classList.add('d-none');
     document.getElementById('loseScreen').classList.add('d-none');
+    document.getElementById('mobileHud').classList.remove('d-none');
     
     initLevel();
     initGame();
-
-
-
+    checkMobileDevice();
 }
 
 function initGame() {
@@ -27,6 +26,7 @@ function initGame() {
 function loseGame() {
     document.getElementById('canvas').classList.add('d-none');
     document.getElementById('loseScreen').classList.remove('d-none');
+    document.getElementById('mobileHud').classList.remove('d-none');
     for (let i = 1; i < 99999; i++) window.clearInterval(i);
 }
 
@@ -36,6 +36,15 @@ function winGame() {
     for (let i = 1; i < 99999; i++) window.clearInterval(i);
 }
 
+
+function checkMobileDevice() {
+    let canvas = document.getElementById('canvas');
+    if (window.matchMedia("(any-pointer: coarse)").matches && !canvas.classList.contains('d-none')) {
+        document.getElementById('mobileHud').classList.remove('d-none');
+    } else {
+        document.getElementById('mobileHud').classList.add('d-none');
+    }
+}
 
 
 
