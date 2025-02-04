@@ -46,7 +46,13 @@ function checkMobileDevice() {
     }
 }
 
+function showGameInfos() {
+    document.getElementById('howToPlay').classList.remove('d-none');
+}
 
+function hideGameInfos() {
+    document.getElementById('howToPlay').classList.add('d-none');
+}
 
 
 

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,10 +9,10 @@
     <script src="./models/drawable-object.class.js"></script>
     <script src="./models/movable-object.class.js"></script>
     <script src="./models/throwable-object.class.js"></script>
+    <script src="./models/status-bar.class.js"></script>
     <script src="./models/coins-bar.class.js"></script>
     <script src="./models/bottles-bar.class.js"></script>
     <script src="./models/endboss-health-bar.class.js"></script>
-    <script src="./models/status-bar.class.js"></script>
     <script src="./models/character.class.js"></script>
     <script src="./models/chicken.class.js"></script>
     <script src="./models/chickenSmall.class.js"></script>
@@ -24,33 +25,82 @@
     <script src="./models/coin.class.js"></script>
     <script src="./levels/level1.js"></script>
     <script src="./models/world.class.js"></script>
-
     <script src="./js/game.js"></script>
 </head>
+
 <body>
     <h1>El Pollo Loco</h1>
-    <div class="mainContent" id="content" width="720" height="480"> 
+    <div class="mainContent" id="content" width="720" height="480">
+
         <div id="startScreen">
             <div class="btnBar">
                 <div>
                     <span onclick="startGame()">Start Game</span>
                 </div>
+                
             </div>
-            <img src="img/9_intro_outro_screens/start/startscreen_1.png" class="screenBorder" width="720" height="480" alt="startImg">
+            <div class="info-img-bar">
+                <img class="info-icon" src="img/9_intro_outro_screens/start/info.png" alt="" onclick="showGameInfos()">
+            </div>
+            <img src="img/9_intro_outro_screens/start/startscreen_1.png" class="screenBorder" width="720" height="480"
+                alt="startImg">
+            <div id="howToPlay" class="infoBox d-none" onclick="hideGameInfos()">
+                <div class="gameInfos">
+                    <h2>How to Play - Keyboard</h2>
+                    <table>
+
+                        <tbody>
+                            <tr>
+                                <td>Walk</td>
+                                <td>Left Arrow & Right Arrow </td>
+                            </tr>
+                            <tr>
+                                <td>Jump</td>
+                                <td>Spacebar Keyboard</td>
+                            </tr>
+                            <tr>
+                                <td>Throw Bottle</td>
+                                <td>'D' Letter Keyboard</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h2>Game Info</h2>
+                    <table>
+
+                        <tbody>
+                            <tr>
+                                <td>1. Collect bottles to throw at the chickens.</td>
+                            </tr>
+                            <tr>
+                                <td>2. Collect coins to restore the health bar to 100%.</td>
+                            </tr>
+                            <tr>
+                                <td>3. There are two types of chickens (normal, small). Both types can be defeated with a single bottle.</td>
+                            </tr>
+                            <tr>
+                                <td>4. At the end of the game, the Endboss appears with its own health bar and can be defeated after 4 bottle hits.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
         <div id="winScreen" class="d-none">
             <div class="btnBar">
                 <span onclick="startGame()">New Game</span>
             </div>
-            <img src="img/9_intro_outro_screens/win/won_2.png" class="screenBorder" width="720" height="480" alt="winImg">
+            <img src="img/9_intro_outro_screens/win/won_2.png" class="screenBorder" width="720" height="480"
+                alt="winImg">
         </div>
         <div id="loseScreen" class="d-none">
             <div class="btnBar">
                 <span onclick="startGame()">New Game</span>
             </div>
-            <img src="img/9_intro_outro_screens/game_over/game over.png" class="screenBorder" width="720" height="480" alt="loseImg">
+            <img src="img/9_intro_outro_screens/game_over/game over.png" class="screenBorder" width="720" height="480"
+                alt="loseImg">
         </div>
         <canvas id="canvas" class="screenBorder d-none" width="720" height="480"></canvas>
+
         <div id="mobileHud" class="mobileHud d-none">
             <div class="hudPosition">
                 <div>
@@ -71,10 +121,15 @@
                 </div>
             </div>
         </div>
-        </div>
+    </div>
 
-        <div id="deviceNotice">
-            <span>Please turn your device to play.</span>
-        </div>
+    <div id="deviceNotice">
+        <span>Please turn your device to play.</span>
+    </div>
+
+
+
+
 </body>
+
 </html>
