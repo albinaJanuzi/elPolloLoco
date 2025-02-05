@@ -85,9 +85,13 @@ function hideGameInfos() {
 function backToMenu() {
     backToMenuElement();
     clearAllIntervals();
-    this.background_sound.pause();
-    this.win_sound.pause();
-    this.lose_sound.pause();
+    backToMenuPauseSound();
+}
+
+function backToMenuPauseSound(){
+    background_sound.pause();
+    win_sound.pause();
+    lose_sound.pause();
 }
 
 function backToMenuElement(){
