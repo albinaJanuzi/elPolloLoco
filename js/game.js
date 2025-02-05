@@ -8,7 +8,7 @@ win_sound = new Audio('audio/win.mp3');
 lose_sound = new Audio('audio/lose.mp3');
 
 background_sound.loop = true;
-background_sound.volume = 0.1;
+background_sound.volume = 0.1;//10%-100 Lautstärke
 
 function startGame() {
     startGameElement();
