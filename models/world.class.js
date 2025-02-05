@@ -15,13 +15,19 @@ class World {
     bottlesInventory = 0;
     lastThrowTime = 0;
 
-
+    collectBottle_sound = new Audio('audio/collecting_bottle.mp3');
+    collectCoin_sound = new Audio('audio/collecting_coin.mp3');
+    breakBottle_sound = new Audio('audio/breaking_bottle.mp3');
+    cackle_sound = new Audio('audio/chickenCackle.mp3');
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = keyboard;
-
+        sounds.push(this.collectBottle_sound);
+        sounds.push(this.collectCoin_sound);
+        sounds.push(this.breakBottle_sound);
+        sounds.push(this.cackle_sound);
         this.draw();
         this.setWorld();
         this.run();
@@ -68,7 +74,8 @@ class World {
                 if (bottle.isColliding(enemy) && !bottle.isExploded) {
                     bottle.isExploded = true;
                     bottle.animateSplash();
-
+                    this.breakBottle_sound.play();
+                    this.cackle_sound.play();
                     setTimeout(() => {
                         this.throwableObjects.splice(bottle, 1);
                     }, 80);
@@ -83,7 +90,8 @@ class World {
             if (bottle.isColliding(this.endboss) && !bottle.isExploded) {
                 bottle.isExploded = true;
                 bottle.animateSplash(bottle);
-
+                this.breakBottle_sound.play();
+                this.cackle_sound.play();
                 this.endboss.hit();
                 this.bossHealthBar.setPercentage(this.endboss.health);
                 setTimeout(() => {
@@ -97,7 +105,7 @@ class World {
         this.throwableObjects.forEach(bottle => {
             if (bottle.y > 374) {
                 bottle.animateSplash();
-
+                this.breakBottle_sound.play();
                 setTimeout(() => {
                     this.throwableObjects.splice(bottle, 1);
                 }, 500);
@@ -109,7 +117,7 @@ class World {
         this.level.enemies.forEach(enemy => {
             if (this.character.isColliding(enemy)) {
                 if (this.character.isAboveGround() && this.character.speedY <= 0) {
-
+                    this.cackle_sound.play();
                     this.deleteEnemy(enemy);
                     this.character.jump();
                 }
@@ -140,6 +148,7 @@ class World {
         this.level.coins.forEach(coin => {
             if (this.character.isColliding(coin)) {
                 this.coinsInventory += 20;
+                this.collectCoin_sound.play();
                 this.coinsBar.setPercentage(this.coinsInventory);
                 let coinIndex = this.level.coins.indexOf(coin);
                 this.level.coins.splice(coinIndex, 1);
@@ -162,6 +171,7 @@ class World {
             if (this.character.isColliding(bottle)) {
                 if (this.bottlesInventory < 100) {
                     this.bottlesInventory += 20;
+                    this.collectBottle_sound.play();
                     this.bottlesBar.setPercentage(this.bottlesInventory);
                     let bottleIndex = this.level.bottles.indexOf(bottle);
                     this.level.bottles.splice(bottleIndex, 1);
