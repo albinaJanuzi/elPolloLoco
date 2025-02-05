@@ -11,6 +11,7 @@ class Endboss extends MovableObject{
         left: 20,
         right: 10,
     };
+    bossAppear_sound = new Audio('audio/boss_appears.mp3');
 
     IMAGES_ALERT = [
         'img/4_enemie_boss_chicken/2_alert/G5.png',
@@ -57,7 +58,7 @@ class Endboss extends MovableObject{
         this.loadImages(this.IMAGES_ATTACK);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DEAD);
-
+        sounds.push(this.bossAppear_sound);
         this.x = 3000;
          this.animateEndboss();
     }
@@ -81,7 +82,11 @@ class Endboss extends MovableObject{
     }
 
     bossAppears() {
+        this.bossAppear_sound.play();
         this.playAnimation(this.IMAGES_WALK);
         this.moveLeft();
+        setTimeout(() => {
+            this.bossAppear_sound.pause();
+         }, 5000);
     }
 }
