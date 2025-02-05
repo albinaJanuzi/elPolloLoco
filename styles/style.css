@@ -41,9 +41,9 @@ h1 {
     /* flex-direction: row; */
 }
 
-.screenBorder {
+.screen-border {
     border-radius: 20px;
-    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 1.5);
 }
 
 
@@ -66,11 +66,11 @@ h1 {
     }
 }
 
-.btnBar {
+.start-game-btn{
     width: 100%;
     position: absolute;
-    top: 38px;
-    left: 20px;
+    top: 55px;
+    left: 10px;
     display: flex;
     gap: 50px;
     justify-content: center;
@@ -78,32 +78,38 @@ h1 {
     div,
     span {
         font-size: 42px;
-        color: #FFCC00;
-        letter-spacing: 2px;
+        color: #FFCA1B;
+        filter: drop-shadow(5px 5px 5px #222222df);
+
     }
 
     span {
-        filter: drop-shadow(5px 5px 5px #222);
+        padding:10px;
+    }
+    
+    span:hover{
+        border-bottom: 1px solid #ffca1b88;
     }
 
     div:hover,
-    span:hover {
+    span:hover{
         cursor: pointer;
-        transform: scale(1.1);
+        transform: scale(1.2);
     }
 }
 
-.info-img-bar{
+.info-img{
     position: absolute;
-    top: 20px;
+    top: 29px;
     left: 600px;
 }
 
-.info-img-bar:hover{
+.info-img:hover{
     cursor: pointer;
+    transform: scale(1.2);
 }
 
-.infoBox {
+.info-box {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -117,11 +123,11 @@ h1 {
     backdrop-filter: blur(10px);
 }
 
-.gameInfos {
+.game-info {
     display: flex;
     flex-direction: column;
     font-size: 25px;
-    background: rgba(255, 145, 71, 0.567);
+    background: #ffca1b4b;
     position: relative;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
     border-radius: 20px;
@@ -135,7 +141,6 @@ h2 {
     font-size: 42px;
     letter-spacing: 2px;
     font-weight: 500;
-    text-decoration: underline;
 }
 
 .gameAdvises {
@@ -178,7 +183,13 @@ footer {
     width: 50px;
 }
 
-.mobileHud {
+.reload-img{
+    height:86px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 5.1), 0 6px 20px rgba(0, 0, 0, 5.1);
+    border-radius: 90%;
+}
+
+.mobile-controll{
     width: 100%;
     padding: 0 10px 10px 10px;
     position: absolute;
@@ -186,9 +197,9 @@ footer {
     left: 0;
 }
 
-.hudPosition {
+.controll-position {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
 
     div {
         display: flex;
@@ -196,7 +207,7 @@ footer {
     }
 }
 
-.mobileBtn {
+.mobile-btn {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -207,6 +218,10 @@ footer {
     img {
         height: 36px;
     }
+}
+
+.td-blue{
+    color:darkblue;
 }
 
 #deviceNotice {
@@ -238,7 +253,7 @@ footer {
 @media only screen and (max-width:720px) {
 
     .mainContent,
-    .screenBorder,
+    .screen-border,
     canvas {
         width: 100%;
     }
@@ -250,7 +265,7 @@ footer {
         display: none;
     }
 
-    .info-img-bar{
+    .info-img{
         left:600px;
     }
 }
@@ -266,7 +281,7 @@ footer {
 
     body,
     .mainContent,
-    .screenBorder,
+    .screen-border,
     canvas {
         height: 100vh;
         padding: 0;
@@ -289,7 +304,7 @@ footer {
 }
 
 @media only screen and (max-height:400px) {
-    .gameInfos {
+    .game-info {
         font-size: 20px;
     }
 }
@@ -299,7 +314,7 @@ footer {
     #deviceNotice {
         display: flex;
     }
-    .info-img-bar{
+    .info-img{
         display: none;
     }
 }

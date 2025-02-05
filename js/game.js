@@ -48,11 +48,11 @@ function checkMobileDevice() {
 }
 
 function showGameInfos() {
-    document.getElementById('howToPlay').classList.remove('d-none');
+    document.getElementById('gameInfo').classList.remove('d-none');
 }
 
 function hideGameInfos() {
-    document.getElementById('howToPlay').classList.add('d-none');
+    document.getElementById('gameInfo').classList.add('d-none');
 }
 
 

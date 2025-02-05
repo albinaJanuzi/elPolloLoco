@@ -31,54 +31,55 @@
 <body>
     <h1>El Pollo Loco</h1>
     <div class="mainContent" id="content" width="720" height="480">
-
         <div id="startScreen">
-            <div class="btnBar">
+            <div class="start-game-btn">
                 <div>
                     <span onclick="startGame()">Start Game</span>
                 </div>
-                
             </div>
-            <div class="info-img-bar">
-                <img class="info-icon" src="img/9_intro_outro_screens/start/info.png" alt="" onclick="showGameInfos()">
+            <div class="info-img">
+                <img class="info-icon" src="img/9_intro_outro_screens/start/info.png" onclick="showGameInfos()">
             </div>
-            <img src="img/9_intro_outro_screens/start/startscreen_1.png" class="screenBorder" width="720" height="480"
-                alt="startImg">
-            <div id="howToPlay" class="infoBox d-none" onclick="hideGameInfos()">
-                <div class="gameInfos">
+            <img src="img/9_intro_outro_screens/start/startscreen_1.png" class="screen-border" width="720" height="480">
+            <div id="gameInfo" class="info-box d-none" onclick="hideGameInfos()">
+                <div class="game-info">
                     <h2>How to Play - Keyboard</h2>
                     <table>
-
                         <tbody>
                             <tr>
-                                <td>Walk</td>
+                                <td class="td-blue">Walk</td>
                                 <td>Left Arrow & Right Arrow </td>
                             </tr>
                             <tr>
-                                <td>Jump</td>
+                                <td class="td-blue">Jump</td>
                                 <td>Spacebar Keyboard</td>
                             </tr>
                             <tr>
-                                <td>Throw Bottle</td>
+                                <td class="td-blue">Throw Bottle</td>
                                 <td>'D' Letter Keyboard</td>
                             </tr>
                         </tbody>
                     </table>
                     <h2>Game Info</h2>
                     <table>
-
                         <tbody>
                             <tr>
-                                <td>1. Collect bottles to throw at the chickens.</td>
+                                <td>1. </td>
+                                <td>Collect bottles to throw at the chickens.</td>
                             </tr>
                             <tr>
-                                <td>2. Collect coins to restore the health bar to 100%.</td>
+                                <td>2. </td>
+                                <td>Collect coins to restore the health bar to 100%.</td>
                             </tr>
                             <tr>
-                                <td>3. There are two types of chickens (normal, small). Both types can be defeated with a single bottle.</td>
+                                <td>3. </td>
+                                <td>There are two types of chickens (normal, small). Both types can be defeated with a
+                                    single bottle.</td>
                             </tr>
                             <tr>
-                                <td>4. At the end of the game, the Endboss appears with its own health bar and can be defeated after 4 bottle hits.</td>
+                                <td>4. </td>
+                                <td>At the end of the game, the Endboss appears with its own health bar and can be
+                                    defeated after 4 bottle hits.</td>
                             </tr>
                         </tbody>
                     </table>
@@ -86,50 +87,43 @@
             </div>
         </div>
         <div id="winScreen" class="d-none">
-            <div class="btnBar">
-                <span onclick="startGame()">New Game</span>
+            <div class="start-game-btn">
+                <img class="reload-img" src="img/reload.png" onclick="startGame()">
             </div>
-            <img src="img/9_intro_outro_screens/win/won_2.png" class="screenBorder" width="720" height="480"
-                alt="winImg">
+            <img src="img/9_intro_outro_screens/win/won_2.png" class="screen-border" width="720" height="480">
         </div>
         <div id="loseScreen" class="d-none">
-            <div class="btnBar">
-                <span onclick="startGame()">New Game</span>
+            <div class="start-game-btn">
+                <img class="reload-img" src="img/reload.png" onclick="startGame()">
             </div>
-            <img src="img/9_intro_outro_screens/game_over/game over.png" class="screenBorder" width="720" height="480"
-                alt="loseImg">
+            <img src="img/9_intro_outro_screens/game_over/oh no you lost!.png" class="screen-border" width="720"
+                height="480">
         </div>
-        <canvas id="canvas" class="screenBorder d-none" width="720" height="480"></canvas>
-
-        <div id="mobileHud" class="mobileHud d-none">
-            <div class="hudPosition">
+        <canvas id="canvas" class="screen-border d-none" width="720" height="480"></canvas>
+        <div id="mobileHud" class="mobile-controll d-none">
+            <div class="controll-position">
                 <div>
-                    <button class="mobileBtn">
-                        <img id="btnLeft" src="img/mobileLeft.png" alt="mobileLeft">
+                    <button class="mobile-btn">
+                        <img id="btnLeft" src="img/mobileLeft.png">
                     </button>
-                    <button class="mobileBtn">
-                        <img id="btnRight" src="img/mobileRight.png" alt="mobileRight">
+                    <button class="mobile-btn">
+                        <img id="btnRight" src="img/mobileRight.png">
                     </button>
                 </div>
                 <div>
-                    <button class="mobileBtn">
-                        <img id="btnJump" src="img/mobileJump.png" alt="mobileJump">
+                    <button class="mobile-btn">
+                        <img id="btnJump" src="img/mobileJump.png">
                     </button>
-                    <button class="mobileBtn">
-                        <img id="btnThrow" src="img/mobileThrow.png" alt="mobileThrow">
+                    <button class="mobile-btn">
+                        <img id="btnThrow" src="img/mobileThrow.png">
                     </button>
                 </div>
             </div>
         </div>
     </div>
-
     <div id="deviceNotice">
-        <span>Please turn your device to play.</span>
+        <span>Flip your device to join the adventure!</span>
     </div>
-
-
-
-
 </body>
 
 </html>
