@@ -24,13 +24,17 @@ class World {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = keyboard;
+        this.pushSounds();
+        this.draw();
+        this.setWorld();
+        this.run();
+    }
+
+    pushSounds(){
         sounds.push(this.collectBottle_sound);
         sounds.push(this.collectCoin_sound);
         sounds.push(this.breakBottle_sound);
         sounds.push(this.cackle_sound);
-        this.draw();
-        this.setWorld();
-        this.run();
     }
 
     setWorld() {
@@ -90,8 +94,7 @@ class World {
             if (bottle.isColliding(this.endboss) && !bottle.isExploded) {
                 bottle.isExploded = true;
                 bottle.animateSplash(bottle);
-                this.breakBottle_sound.play();
-                this.cackle_sound.play();
+                this.collideEndbossSound();
                 this.endboss.hit();
                 this.bossHealthBar.setPercentage(this.endboss.health);
                 setTimeout(() => {
@@ -99,6 +102,11 @@ class World {
                 }, 80);
             }
         });
+    }
+
+    collideEndbossSound(){
+        this.breakBottle_sound.play();
+        this.cackle_sound.play();
     }
 
     checkBottleCollideWithGround() {
@@ -162,7 +170,6 @@ class World {
             this.character.recoverHealth();
             this.coinsBar.setPercentage(this.coinsInventory);
             this.healthBar.setPercentage(this.character.health);
-
         }
     }
 
@@ -182,12 +189,11 @@ class World {
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
         this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap(this.level.backgroundObjects);
         this.addLevelObjects();
         this.ctx.translate(-this.camera_x, 0);
-        this.addLevelBars();
+        this.addBars();
         this.ctx.translate(this.camera_x, 0);
         this.ctx.translate(-this.camera_x, 0);
 
@@ -207,7 +213,7 @@ class World {
         this.addObjectsToMap(this.throwableObjects);
     }
 
-    addLevelBars() {
+    addBars() {
         this.addToMap(this.healthBar);
         this.addToMap(this.coinsBar);
         this.addToMap(this.bottlesBar);

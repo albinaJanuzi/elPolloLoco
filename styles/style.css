@@ -37,15 +37,12 @@ h1 {
 
 .mainContent {
     position: relative;
-    /* display: flex; */
-    /* flex-direction: row; */
 }
 
 .screen-border {
     border-radius: 20px;
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 1.5);
 }
-
 
 .iconBar {
     position: absolute;
@@ -232,8 +229,16 @@ footer {
     color:darkblue;
 }
 
+td img{
+    height:20px;
+}
+
 .full-screen img{
     height:33px;
+}
+
+.start-game-btn img:hover{
+cursor: pointer;
 }
 
 #deviceNotice {
@@ -258,9 +263,7 @@ footer {
     }
 }
 
-
-
-/********************** Start Responsive *******************/
+/*RESPONSIVE*/
 
 @media only screen and (max-width:720px) {
 
@@ -297,7 +300,6 @@ footer {
     canvas {
         height: 100vh;
         padding: 0;
-        /* overflow-y: hidden; */
     }
 
     h1,
