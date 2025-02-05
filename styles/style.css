@@ -183,6 +183,15 @@ footer {
     width: 50px;
 }
 
+.title-hide-btn{
+    display: flex;
+    justify-content: space-between;
+}
+
+.title-hide-btn span:hover{
+    cursor: pointer;
+}
+
 .reload-img{
     height:86px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 5.1), 0 6px 20px rgba(0, 0, 0, 5.1);
