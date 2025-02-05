@@ -55,5 +55,15 @@ function hideGameInfos() {
     document.getElementById('gameInfo').classList.add('d-none');
 }
 
+function backToMenu() {
+    document.getElementById('canvas').classList.add('d-none');
+    document.getElementById('iconBar').classList.add('d-none');
+    document.getElementById('mobileHud').classList.add('d-none');
+    document.getElementById('startScreen').classList.remove('d-none');
+    document.getElementById('loseScreen').classList.add('d-none');
+    document.getElementById('winScreen').classList.add('d-none');
+    for (let i = 1; i < 99999; i++) window.clearInterval(i);
+}
+
 
 
