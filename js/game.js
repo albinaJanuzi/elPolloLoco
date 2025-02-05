@@ -56,6 +56,7 @@ function winGame() {
     win_sound.play();
 }
 
+window.addEventListener('resize', checkMobileDevice)
 
 function checkMobileDevice() {
     let canvas = document.getElementById('canvas');
@@ -115,4 +116,8 @@ function soundOn() {
     sounds.forEach(sound => {
         sound.muted = false;
     })
+}
+
+function fullScreen() {
+    canvas.requestFullscreen();
 }
