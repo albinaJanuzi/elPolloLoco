@@ -15,9 +15,13 @@ function startGame() {
     initLevel();
     initGame();
     checkMobileDevice();
-    checkIsMuted();
+    checkIsMuted();  // Check mute state before playing sounds
 
-    background_sound.play();
+    // Play background sound only if not muted
+    if (!isMuted) {
+        background_sound.play();
+    }
+
     sounds.push(background_sound, win_sound, lose_sound);
 }
 
@@ -40,8 +44,8 @@ function loseGame() {
     clearAllIntervals();
     background_sound.pause();
     lose_sound.play();
+    stopCackleSound();  // Stop the cackle sound when the game is lost
 }
-
 function loseGameElement(){
     document.getElementById('canvas').classList.add('d-none');
     document.getElementById('loseScreen').classList.remove('d-none');
@@ -54,6 +58,16 @@ function winGame() {
     clearAllIntervals();
     background_sound.pause();
     win_sound.play();
+    stopCackleSound();
+}
+
+function stopCackleSound() {
+    sounds.forEach(sound => {
+        if (sound instanceof Audio && sound.src.includes('chickenCackle.mp3')) {
+            sound.pause(); // Stop the sound
+            sound.currentTime = 0; // Reset to the start
+        }
+    });
 }
 
 function winGameElement(){
@@ -103,34 +117,39 @@ function backToMenuElement(){
     document.getElementById('iconBar').classList.add('d-none');
 }
 
+function updateMuteState(mute) {
+    isMuted = mute;
+    localStorage.setItem('isMuted', mute.toString());
+    
+    sounds.forEach(sound => {
+        sound.muted = mute;
+    });
+
+    document.getElementById('soundOn').classList.toggle('d-none', mute);
+    document.getElementById('soundOff').classList.toggle('d-none', !mute);
+}
+
 function checkIsMuted() {
-    if (isMuted == true) {
-        sounds.forEach(sound => {
-            sound.muted = true;
-        });
-    } else if (isMuted == false) {
-        sounds.forEach(sound => {
-            sound.muted = false;
-        });
+    const storedMuteState = localStorage.getItem('isMuted') === 'true';
+    updateMuteState(storedMuteState);
+
+    // Play background sound only if it's unmuted and paused
+    if (!isMuted && background_sound.paused) {
+        background_sound.play();
     }
 }
 
 function soundOff() {
-    isMuted = true;
-    document.getElementById('soundOn').classList.add('d-none');
-    document.getElementById('soundOff').classList.remove('d-none');
-    sounds.forEach(sound => {
-        sound.muted = true;
-    });
+    updateMuteState(true);
 }
 
 function soundOn() {
-    isMuted = false;
-    document.getElementById('soundOff').classList.add('d-none');
-    document.getElementById('soundOn').classList.remove('d-none');
-    sounds.forEach(sound => {
-        sound.muted = false;
-    })
+    updateMuteState(false);
+
+    // Ensure the background sound plays when unmuted
+    if (background_sound.paused) {
+        background_sound.play();
+    }
 }
 
 function fullScreen() {
