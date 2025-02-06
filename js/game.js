@@ -16,13 +16,15 @@ function startGame() {
     initGame();
     checkMobileDevice();
     checkIsMuted();  // Check mute state before playing sounds
-
-    // Play background sound only if not muted
-    if (!isMuted) {
-        background_sound.play();
-    }
-
+    playBackgroundSound();
     sounds.push(background_sound, win_sound, lose_sound);
+}
+
+function playBackgroundSound(){
+// Play background sound only if not muted
+if (!isMuted) {
+    background_sound.play();
+}
 }
 
 function startGameElement(){
