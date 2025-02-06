@@ -1,3 +1,9 @@
+/**
+ * @class HealthBar
+ * 
+ * The `HealthBar` class manages the player's health bar, visually representing the player's health status.
+ * It dynamically updates the displayed health level based on the player's current health percentage.
+ */
 class HealthBar extends DrawableObject{
     IMAGES_LIVE = [
         'img/7_statusbars/1_statusbar/2_statusbar_health/blue/0.png',
@@ -10,11 +16,17 @@ class HealthBar extends DrawableObject{
 
     percentage = 100;
 
+     /**
+     * Constructor initializes the health bar.
+     */
     constructor() {
         super();
         this.initialize();
     }
     
+     /**
+     * Initializes the health bar by loading images and setting its default properties.
+     */
     initialize() {
         this.loadImages(this.IMAGES_LIVE);
         this.x = 20;
@@ -24,12 +36,22 @@ class HealthBar extends DrawableObject{
         this.setPercentage(100);
     }
 
+    /**
+     * Updates the health percentage and changes the displayed image accordingly.
+     * 
+     * @param {number} percentage - The current health percentage (0 to 100).
+     */
     setPercentage(percentage) {
         this.percentage = percentage;
         let path = this.IMAGES_LIVE[this.resolveImageIndex()];
         this.img = this.imageCache[path];
     }
 
+     /**
+     * Determines the correct image index based on the current health percentage.
+     * 
+     * @returns {number} The index of the corresponding health image.
+     */
     resolveImageIndex() {
         if (this.percentage >= 100) {
             return 5;

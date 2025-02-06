@@ -1,4 +1,10 @@
-class Endboss extends MovableObject{
+/**
+ * @class Endboss
+ * 
+ * The `Endboss` class represents the final boss enemy in the game. 
+ * It extends `MovableObject` and manages animations, movement, and interactions.
+ */
+class Endboss extends MovableObject {
     y = 5;
     height = 450;
     width = 350;
@@ -49,17 +55,24 @@ class Endboss extends MovableObject{
         'img/4_enemie_boss_chicken/5_dead/G24.png',
         'img/4_enemie_boss_chicken/5_dead/G25.png',
         'img/4_enemie_boss_chicken/5_dead/G26.png'
-    ];  
+    ];
 
+
+    /**
+     * Constructor initializes the boss by loading images and starting animations.
+     */
     constructor() {
         super().loadImage(this.IMAGES_ALERT[0]);
         this.loadAllImages();
         sounds.push(this.bossAppear_sound);
         this.x = 3000;
-         this.animateEndboss();
+        this.animateEndboss();
     }
 
-    loadAllImages(){
+    /**
+    * Loads all images required for boss animations.
+    */
+    loadAllImages() {
         this.loadImages(this.IMAGES_ALERT);
         this.loadImages(this.IMAGES_WALK);
         this.loadImages(this.IMAGES_ATTACK);
@@ -67,12 +80,18 @@ class Endboss extends MovableObject{
         this.loadImages(this.IMAGES_DEAD);
     }
 
+    /**
+    * Starts the animation loop for the boss.
+    */
     animateEndboss() {
         setInterval(() => {
             this.handleAnimation();
         }, 200);
     }
-    
+
+    /**
+    * Handles the boss animations based on its current state.
+    */
     handleAnimation() {
         if (this.isHurt() && !this.isDead()) {
             this.handleHurt();
@@ -84,33 +103,45 @@ class Endboss extends MovableObject{
             this.handleAlert();
         }
     }
-    
+
+    /**
+     * Plays the hurt animation.
+     */
     handleHurt() {
         this.playAnimation(this.IMAGES_HURT);
     }
-    
+
+    /**
+    * Handles the boss's death sequence, stopping movement and playing the death animation.
+    */
     handleDeath() {
         this.speed = 0;
         let deathInterval = setInterval(() => {
             this.playAnimation(this.IMAGES_DEAD);
         }, 200); // Faster animation (100ms instead of default 200ms)
-    
+
         setTimeout(() => {
             clearInterval(deathInterval); // Stop animation after 1 second
             winGame();
         }, 2000); // End boss death sequence in 1 second
     }
-    
+
+    /**
+    * Plays the alert animation when the boss is first seen.
+    */
     handleAlert() {
         this.playAnimation(this.IMAGES_ALERT);
     }
 
+    /**
+     * Starts the boss's appearance sequence, playing sound and moving towards the player.
+     */
     bossAppears() {
         this.bossAppear_sound.play();
         this.playAnimation(this.IMAGES_WALK);
         this.moveLeft();
         setTimeout(() => {
             this.bossAppear_sound.pause();
-         }, 5000);
+        }, 5000);
     }
 }
