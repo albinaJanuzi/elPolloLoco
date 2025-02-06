@@ -18,20 +18,30 @@ class DrawableObject {
     }
 
     drawFrame(ctx) {
-        if (this instanceof Character || this instanceof Chicken || this instanceof ChickenSmall
-            || this instanceof Endboss || this instanceof ThrowableObject || this instanceof Bottle
-            || this instanceof Coin) {
-            ctx.beginPath();
-            ctx.lineWidth = '1';
-            ctx.strokeStyle = 'red';
-            ctx.rect(
-                this.x + this.offset.left,
-                this.y + this.offset.top,
-                this.width - this.offset.right - this.offset.left,
-                this.height - this.offset.bottom - this.offset.top
-            );
-            ctx.stroke();
+        if (this.isDrawableObject()) {
+            this.drawBoundingBox(ctx);
         }
+    }
+
+    isDrawableObject() {
+        // Check if the object is one of the specified classes
+        return this instanceof Character || this instanceof Chicken || this instanceof ChickenSmall
+            || this instanceof Endboss || this instanceof ThrowableObject || this instanceof Bottle
+            || this instanceof Coin;
+    }
+
+    drawBoundingBox(ctx) {
+        // Draw the bounding box around the object
+        ctx.beginPath();
+        ctx.lineWidth = '1';
+        ctx.strokeStyle = 'red';
+        ctx.rect(
+            this.x + this.offset.left,
+            this.y + this.offset.top,
+            this.width - this.offset.right - this.offset.left,
+            this.height - this.offset.bottom - this.offset.top
+        );
+        ctx.stroke();
     }
 
 
