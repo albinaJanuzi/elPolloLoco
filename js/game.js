@@ -43,7 +43,9 @@ function loseGame() {
     loseGameElement();
     clearAllIntervals();
     background_sound.pause();
-    lose_sound.play();
+    if (!isMuted) {
+        lose_sound.play();
+    }
     stopCackleSound();  // Stop the cackle sound when the game is lost
 }
 function loseGameElement(){
@@ -57,7 +59,9 @@ function winGame() {
     winGameElement();
     clearAllIntervals();
     background_sound.pause();
-    win_sound.play();
+    if (!isMuted) {
+        win_sound.play();
+    }
     stopCackleSound();
 }
 
