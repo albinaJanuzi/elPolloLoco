@@ -91,10 +91,14 @@ class Endboss extends MovableObject{
     
     handleDeath() {
         this.speed = 0;
-        this.playAnimation(this.IMAGES_DEAD);
+        let deathInterval = setInterval(() => {
+            this.playAnimation(this.IMAGES_DEAD);
+        }, 200); // Faster animation (100ms instead of default 200ms)
+    
         setTimeout(() => {
+            clearInterval(deathInterval); // Stop animation after 1 second
             winGame();
-        }, 2000);
+        }, 2000); // End boss death sequence in 1 second
     }
     
     handleAlert() {
