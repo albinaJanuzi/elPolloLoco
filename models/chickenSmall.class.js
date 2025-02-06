@@ -10,6 +10,9 @@ class ChickenSmall extends MovableObject {
         left: 5,
         right: 5,
     };
+
+    cackle_sound = new Audio('audio/chickenCackle.mp3'); // Add the cackle sound
+
     IMAGES_WALKING = [
         'img/3_enemies_chicken/chicken_small/1_walk/1_w.png',
         'img/3_enemies_chicken/chicken_small/1_walk/2_w.png',
@@ -21,11 +24,17 @@ class ChickenSmall extends MovableObject {
 
     constructor() {
         super().loadImage('img/3_enemies_chicken/chicken_small/1_walk/1_w.png');
+        this.initChicken(); // Initialize the chicken properties and sound
+        this.animate();
+    }
+
+    //handle initialization tasks
+    initChicken() {
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_DEAD);
         this.x = 700 + Math.random() * 2000;
         this.speed = 0.15 + Math.random() * 0.5;
-        this.animate();
+        sounds.push(this.cackle_sound); // Add cackle sound to global sounds
     }
 
     animate() {
@@ -34,10 +43,19 @@ class ChickenSmall extends MovableObject {
     }
 
     moveChicken() {
+        this.startWalking();
+        this.startWalkingAnimation();
+    }
+
+    //handle the walking movement interval
+    startWalking() {
         this.walkingChicken = setInterval(() => {
             this.moveLeft();
         }, 1000 / 60);
+    }
 
+    //handle the walking animation interval
+    startWalkingAnimation() {
         this.walkingChickenAnimation = setInterval(() => {
             this.playAnimation(this.IMAGES_WALKING);
         }, 150);
@@ -46,13 +64,47 @@ class ChickenSmall extends MovableObject {
     checkDead() {
         setInterval(() => {
             if (this.isDead()) {
-                this.loadImage(this.IMAGES_DEAD);
-                clearInterval(this.walkingChicken)
-                clearInterval(this.walkingChickenAnimation)
-                setTimeout(() => {
-                    this.y += this.speedY;
-                }, 500);
-            };
+                this.handleDeath(); // Delegate the death handling to another method
+            }
         }, 50);
+    }
+
+    //handle all actions related to death
+    handleDeath() {
+        this.loadImage(this.IMAGES_DEAD);
+        this.playCackleSound(); // Play the cackle sound when chicken dies
+        this.stopMovement(); // Stop movement and animation
+        this.applyDeathEffect(); // Apply death effect after a delay
+    }
+
+    //stop movement and animation
+    stopMovement() {
+        clearInterval(this.walkingChicken); // Stop movement
+        clearInterval(this.walkingChickenAnimation); // Stop animation
+    }
+
+    //handle death effect after a delay
+    applyDeathEffect() {
+        setTimeout(() => {
+            this.y += this.speedY; // Apply death effect
+        }, 500);
+    }
+
+    playCackleSound() {
+        if (this.shouldPlaySound()) {
+            this.cackle_sound.play();
+            this.cackle_sound.onended = this.resetCackleSound; // Reset after the sound ends
+        }
+    }
+
+    //check if the sound should be played
+    shouldPlaySound() {
+        return this.cackle_sound.paused || this.cackle_sound.currentTime === 0;
+    }
+
+    //reset the sound after it ends
+    resetCackleSound() {
+        this.cackle_sound.pause();
+        this.cackle_sound.currentTime = 0;
     }
 }

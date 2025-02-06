@@ -11,6 +11,7 @@ class Character extends MovableObject {
         right: 20,
     };
     world;
+    
     walk_sound = new Audio('./audio/walking.mp3');
     jump_sound = new Audio('audio/jump.mp3');
     hurt_sound = new Audio('audio/hurt.mp3');
