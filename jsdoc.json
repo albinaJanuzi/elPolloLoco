@@ -1,0 +1,9 @@
+{
+    "source": {
+        "include": [
+                    "./models/coins-bar.class.js"]
+    },
+    "opts": {
+        "destination": "./out"
+    }
+}
