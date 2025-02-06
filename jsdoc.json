@@ -1,6 +1,6 @@
 {
     "source": {
-        "include": [
+        "include": ["./models/background-object.class.js",
                     "./models/coins-bar.class.js"]
     },
     "opts": {
