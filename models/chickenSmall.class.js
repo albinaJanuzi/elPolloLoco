@@ -93,7 +93,9 @@ class ChickenSmall extends MovableObject {
     playCackleSound() {
         if (this.shouldPlaySound()) {
             this.cackle_sound.play();
-            this.cackle_sound.onended = this.resetCackleSound; // Reset after the sound ends
+            this.cackle_sound.onended = () => {
+                this.resetCackleSound(); // Reset after the sound ends
+            };
         }
     }
 
@@ -105,6 +107,6 @@ class ChickenSmall extends MovableObject {
     //reset the sound after it ends
     resetCackleSound() {
         this.cackle_sound.pause();
-        this.cackle_sound.currentTime = 0;
+        this.cackle_sound.currentTime = 0; // Reset to the beginning for future use
     }
 }
