@@ -1,5 +1,5 @@
 class Chicken extends MovableObject {
-    multiplier = Math.random() * 50; // add variation to the chicken's size and position
+    multiplier = Math.random() * 50;
     speedY = 10;
     health = 100;
     offset = {
@@ -19,16 +19,21 @@ class Chicken extends MovableObject {
         'img/3_enemies_chicken/chicken_normal/2_dead/dead.png'
     ];
 
-    cackle_sound = new Audio('audio/chickenCackle.mp3'); // Add the cackle sound
+    cackle_sound = new Audio('audio/chickenCackle.mp3'); 
 
     constructor() {
         super().loadImage('img/3_enemies_chicken/chicken_normal/1_walk/1_w.png');
         this.loadAllImages();
         this.setRandomProperties();
         this.animate();
+        this.preloadAudio();
 
-        // Add the chicken sound to the global sounds array to be muted/unmuted
-        sounds.push(this.cackle_sound);
+        sounds.push(this.cackle_sound); // Add to global sounds array
+    }
+
+    preloadAudio() {
+        // Preload the audio
+        this.cackle_sound.load();
     }
 
     loadAllImages() {
@@ -66,7 +71,7 @@ class Chicken extends MovableObject {
     handleDeath() {
         this.loadImage(this.IMAGES_DEAD);
         this.stopMovement();
-        this.cackle_sound.play(); // Play the cackle sound when the chicken dies
+        this.cackle_sound.play();  // Play the sound when the chicken dies
         setTimeout(() => this.y += this.speedY, 500);
     }
 
