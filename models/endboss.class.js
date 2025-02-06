@@ -53,32 +53,52 @@ class Endboss extends MovableObject{
 
     constructor() {
         super().loadImage(this.IMAGES_ALERT[0]);
-        this.loadImages(this.IMAGES_ALERT);
-        this.loadImages(this.IMAGES_WALK);
-        this.loadImages(this.IMAGES_ATTACK);
-        this.loadImages(this.IMAGES_HURT);
-        this.loadImages(this.IMAGES_DEAD);
+        this.loadAllImages();
         sounds.push(this.bossAppear_sound);
         this.x = 3000;
          this.animateEndboss();
     }
 
+    loadAllImages(){
+        this.loadImages(this.IMAGES_ALERT);
+        this.loadImages(this.IMAGES_WALK);
+        this.loadImages(this.IMAGES_ATTACK);
+        this.loadImages(this.IMAGES_HURT);
+        this.loadImages(this.IMAGES_DEAD);
+    }
+
     animateEndboss() {
-       setInterval(() => {
-            if (this.isHurt() && !this.isDead()) {
-                this.playAnimation(this.IMAGES_HURT);
-            } else if (this.isDead()) {
-                this.speed = 0;
-                this.playAnimation(this.IMAGES_DEAD);
-                setTimeout(() => {
-                    winGame();
-                }, 2000);               
-            } else if (this.firstContact) {
-                this.bossAppears();
-            } else {
-                this.playAnimation(this.IMAGES_ALERT);
-            }
+        setInterval(() => {
+            this.handleAnimation();
         }, 200);
+    }
+    
+    handleAnimation() {
+        if (this.isHurt() && !this.isDead()) {
+            this.handleHurt();
+        } else if (this.isDead()) {
+            this.handleDeath();
+        } else if (this.firstContact) {
+            this.bossAppears();
+        } else {
+            this.handleAlert();
+        }
+    }
+    
+    handleHurt() {
+        this.playAnimation(this.IMAGES_HURT);
+    }
+    
+    handleDeath() {
+        this.speed = 0;
+        this.playAnimation(this.IMAGES_DEAD);
+        setTimeout(() => {
+            winGame();
+        }, 2000);
+    }
+    
+    handleAlert() {
+        this.playAnimation(this.IMAGES_ALERT);
     }
 
     bossAppears() {

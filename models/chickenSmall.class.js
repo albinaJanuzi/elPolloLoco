@@ -11,7 +11,7 @@ class ChickenSmall extends MovableObject {
         right: 5,
     };
 
-    cackle_sound = new Audio('audio/chickenCackle.mp3'); // Add the cackle sound
+    cackle_sound = new Audio('audio/chickenCackle.mp3?' + new Date().getTime()); // Cache-busting
 
     IMAGES_WALKING = [
         'img/3_enemies_chicken/chicken_small/1_walk/1_w.png',
@@ -28,7 +28,7 @@ class ChickenSmall extends MovableObject {
         this.animate();
     }
 
-    //handle initialization tasks
+    // Handle initialization tasks
     initChicken() {
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_DEAD);
@@ -47,14 +47,14 @@ class ChickenSmall extends MovableObject {
         this.startWalkingAnimation();
     }
 
-    //handle the walking movement interval
+    // Handle the walking movement interval
     startWalking() {
         this.walkingChicken = setInterval(() => {
             this.moveLeft();
         }, 1000 / 60);
     }
 
-    //handle the walking animation interval
+    // Handle the walking animation interval
     startWalkingAnimation() {
         this.walkingChickenAnimation = setInterval(() => {
             this.playAnimation(this.IMAGES_WALKING);
@@ -69,27 +69,28 @@ class ChickenSmall extends MovableObject {
         }, 50);
     }
 
-    //handle all actions related to death
+    // Handle all actions related to death
     handleDeath() {
         this.loadImage(this.IMAGES_DEAD);
-        this.playCackleSound(); // Play the cackle sound when chicken dies
         this.stopMovement(); // Stop movement and animation
+        this.playCackleSound(); // Play the cackle sound when chicken dies
         this.applyDeathEffect(); // Apply death effect after a delay
     }
 
-    //stop movement and animation
+    // Stop movement and animation
     stopMovement() {
         clearInterval(this.walkingChicken); // Stop movement
         clearInterval(this.walkingChickenAnimation); // Stop animation
     }
 
-    //handle death effect after a delay
+    // Handle death effect after a delay
     applyDeathEffect() {
         setTimeout(() => {
             this.y += this.speedY; // Apply death effect
         }, 500);
     }
 
+    // Play the cackle sound if it's not already playing
     playCackleSound() {
         if (this.shouldPlaySound()) {
             this.cackle_sound.play();
@@ -99,12 +100,12 @@ class ChickenSmall extends MovableObject {
         }
     }
 
-    //check if the sound should be played
+    // Check if the sound should be played
     shouldPlaySound() {
         return this.cackle_sound.paused || this.cackle_sound.currentTime === 0;
     }
 
-    //reset the sound after it ends
+    // Reset the sound after it ends
     resetCackleSound() {
         this.cackle_sound.pause();
         this.cackle_sound.currentTime = 0; // Reset to the beginning for future use

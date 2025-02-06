@@ -12,6 +12,10 @@ class HealthBar extends DrawableObject{
 
     constructor() {
         super();
+        this.initialize();
+    }
+    
+    initialize() {
         this.loadImages(this.IMAGES_LIVE);
         this.x = 20;
         this.y = 0;
