@@ -1,6 +1,22 @@
 {
     "source": {
         "include": ["./models/background-object.class.js",
+                    "./models/bottle.class.js",
+                    "./models/bottles-bar.class.js",
+                    "./models/character.class.js",
+                    "./models/chicken.class.js",
+                    "./models/chickenSmall.class.js",
+                    "./models/cloud.class.js",
+                    "./models/coin.class.js",
+                    "./models/drawable-object.class.js",
+                    "./models/endboss-health-bar.class.js",
+                    "./models/endboss.class.js",
+                    "./models/health-bar.class.js",
+                    "./models/keyboard.class.js",
+                    "./models/level.class.js",
+                    "./models/movable-object.class.js",
+                    "./models/throwable-object.class.js",
+                    "./models/world.class.js",
                     "./models/coins-bar.class.js"]
     },
     "opts": {

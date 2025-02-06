@@ -1,6 +1,7 @@
 /**
  * Reperesents a background element 
  * @class  
+ * @extends MovableObject
  */
 class BackgroundObject extends MovableObject{
 

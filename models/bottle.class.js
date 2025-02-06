@@ -1,5 +1,12 @@
+/**
+ * @class Bottle
+ * @extends MovableObject
+ * 
+ * The Bottle class represents a bottle object in the game. 
+ * It extends the MovableObject class, inheriting movement-related properties and methods.
+ */
 class Bottle extends MovableObject {
-   
+
     IMAGES_GROUND = [
         'img/6_salsa_bottle/1_salsa_bottle_on_ground.png',
         'img/6_salsa_bottle/2_salsa_bottle_on_ground.png'
@@ -16,6 +23,10 @@ class Bottle extends MovableObject {
     };
     isExploded = false;
 
+    /**
+     * Creates a new Bottle instance.
+     * The bottle is assigned a random x-position within a defined range.
+     */
     constructor() {
         super().loadImage('img/6_salsa_bottle/1_salsa_bottle_on_ground.png');
         this.loadImages(this.IMAGES_GROUND);
@@ -23,6 +34,9 @@ class Bottle extends MovableObject {
         this.animate();
     }
 
+    /**
+     * Animates the bottle by switching between images at a fixed interval.
+     */
     animate() {
         setInterval(() => {
             this.playAnimation(this.IMAGES_GROUND);
