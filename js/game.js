@@ -8,7 +8,7 @@ win_sound = new Audio('audio/win.mp3');
 lose_sound = new Audio('audio/lose.mp3');
 
 background_sound.loop = true;
-background_sound.volume = 0.1;//10%-100 Lautstärke
+background_sound.volume = 0.1;
 
 function startGame() {
     startGameElement();
@@ -63,7 +63,7 @@ function winGameElement(){
     document.getElementById('iconBar').classList.add('d-none');
 }
 
-window.addEventListener('resize', checkMobileDevice)
+window.addEventListener('resize', checkMobileDevice);
 
 function checkMobileDevice() {
     let canvas = document.getElementById('canvas');

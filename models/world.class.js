@@ -1,19 +1,20 @@
 class World {
-    character = new Character();
-    endboss = new Endboss();
-    level = level1;
     canvas;
     ctx;
     keyboard;
     camera_x = 0;
+    coinsInventory = 0;
+    bottlesInventory = 0;
+    lastThrowTime = 0;
+    level = level1;
+    character = new Character();
+    endboss = new Endboss();
     healthBar = new HealthBar();
     coinsBar = new CoinsBar();
     bottlesBar = new BottlesBar();
     bossHealthBar = new EndbossHealthBar();
     throwableObjects = [];
-    coinsInventory = 0;
-    bottlesInventory = 0;
-    lastThrowTime = 0;
+
 
     collectBottle_sound = new Audio('audio/collecting_bottle.mp3');
     collectCoin_sound = new Audio('audio/collecting_coin.mp3');
@@ -42,10 +43,13 @@ class World {
     }
 
     run() {
-        setInterval(() => { this.checkCollisions(); }, 40);
-        setInterval(() => { this.checkCollisionThrowableObj(); }, 1000 / 20);
-        setInterval(() => { this.checkThrowBottle(); }, 1000 / 20);
-        setInterval(() => { this.checkCoinsReward(); }, 1000 / 20);
+        setInterval(() => this.checkCollisions(), 40);
+    
+        setInterval(() => {
+            this.checkCollisionThrowableObj();
+            this.checkThrowBottle();
+            this.checkCoinsReward();
+        }, 1000 / 20);
     }
 
     checkThrowBottle() {
