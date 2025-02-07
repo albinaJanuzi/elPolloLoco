@@ -82,29 +82,25 @@ function winGameElement(){
     document.getElementById('iconBar').classList.add('d-none');
 }
 
-window.addEventListener('resize', checkMobileDevice);
-
-function checkMobileDevice() {
-    let canvas = document.getElementById('canvas');
-    if (window.matchMedia("(any-pointer: coarse)").matches && !canvas.classList.contains('d-none')) {
-        document.getElementById('mobileController').classList.remove('d-none');
-    } else {
-        document.getElementById('mobileController').classList.add('d-none');
-    }
-}
 
 function checkOrientation() {
-    if (window.innerHeight > window.innerWidth) {
-        document.getElementById('deviceNotice').style.display = 'flex';
-        document.getElementById('content').style.display = 'none'; // Verstecke das Spiel
+    let deviceNotice = document.getElementById('deviceNotice');
+
+    if (window.matchMedia("(any-pointer: coarse)").matches) { // Prüft, ob ein Touchscreen-Gerät verwendet wird
+        if (window.innerWidth < window.innerHeight) {
+            deviceNotice.style.display = 'flex';
+        } else {
+            deviceNotice.style.display = 'none';
+        }
     } else {
-        document.getElementById('deviceNotice').style.display = 'none';
-        document.getElementById('content').style.display = 'block'; // Zeige das Spiel
+        deviceNotice.style.display = 'none'; // Falls es kein mobiles Gerät ist, die Nachricht ausblenden
     }
 }
 
+// Event-Listener für Bildschirmrotation
 window.addEventListener('resize', checkOrientation);
 window.addEventListener('load', checkOrientation);
+
 
 function showGameInfos() {
     document.getElementById('gameInfo').classList.remove('d-none');
