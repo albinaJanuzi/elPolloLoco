@@ -222,6 +222,7 @@ footer {
 
     img {
         height: 36px;
+        padding-right: 10px;
     }
 }
 
@@ -307,12 +308,20 @@ cursor: pointer;
     .info-img{
         left:600px;
     }
+
+    .reload-img{
+        height:50px;
+    }
 }
 
 @media only screen and (min-width:1024px) and (max-height:750px) {
 
     footer {
         display: none;
+    }
+
+    .reload-img{
+        height:50px;
     }
 }
 
@@ -339,6 +348,10 @@ cursor: pointer;
     #winScreen,
     #loseScreen {
         height: 100%;
+    }
+
+    .reload-img{
+        height:50px;
     }
 
 }
