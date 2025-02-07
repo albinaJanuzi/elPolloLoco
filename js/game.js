@@ -14,7 +14,6 @@ function startGame() {
     startGameElement();
     initLevel();
     initGame();
-    checkMobileDevice();
     checkIsMuted(); 
     playBackgroundSound();
     sounds.push(background_sound, win_sound, lose_sound);
@@ -27,7 +26,7 @@ if (!isMuted) {
 }
 
 function startGameElement(){
-    document.getElementById('startScreen').classList.add('d-none');
+    document.getElementById('startScreen').classList.add('d-none'); // This hides the start screen
     document.getElementById('winScreen').classList.add('d-none');
     document.getElementById('loseScreen').classList.add('d-none');
     document.getElementById('mobileController').classList.remove('d-none');
