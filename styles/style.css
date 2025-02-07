@@ -10,7 +10,6 @@
 
 body {
     height: 100vh;
-    padding-top: 50px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -63,7 +62,6 @@ h1 {
 }
 
 .start-game-btn{
-    width: 100%;
     position: absolute;
     top: 55px;
     left: 10px;
@@ -270,16 +268,20 @@ cursor: pointer;
 
 #deviceNotice {
     background-image: url('../img/desert.png');
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
     height: 100%;
     width: 100%;
-    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: black;
+    font-size: 30px;
+    display: flex;
     justify-content: center;
     align-items: center;
-    gap: 100px;
-    display: none;
+    text-align: center;
+    z-index: 999;
 
     span {
         font-size: 30px;
@@ -288,151 +290,43 @@ cursor: pointer;
 
 }
 
-/*RESPONSIVE*/
 
-@media only screen and (max-width:720px) {
 
-    .mainContent,
-    .screen-border,
-    canvas {
-        width: 100%;
-    }
-
-    h1,
-    .controllBar,
-    
-    footer {
-        display: none;
-    }
-
-    .info-img{
-        left:600px;
-    }
-
-    .reload-img{
-        height:50px;
-    }
-}
-
-@media only screen and (min-width:1024px) and (max-height:750px) {
-
-    footer {
-        display: none;
-    }
-
-    .reload-img{
-        height:50px;
-    }
-}
-
-@media only screen and (max-height:480px) {
-
-    body,
-    .mainContent,
-    .screen-border,
-    canvas {
-        height: 100vh;
+@media only screen and (max-width: 723px) and (max-height: 480px) {
+    html, body {
+        margin: 0;
         padding: 0;
-        background-size: auto;
-        overflow-y: hidden;
-    }
-
-    h1,
-    #fullscreen,
-    .controllBar,
-    footer {
-        display: none;
-    }
-
-    #startScreen,
-    #winScreen,
-    #loseScreen {
-        height: 100%;
-    }
-
-    .reload-img{
-        height:50px;
-    }
-
-}
-
-@media only screen and (max-height:400px) {
-    .game-info {
-        font-size: 20px;
-    }
-}
-
-@media (orientation: portrait) and (max-width: 600px) {
-
-    #deviceNotice {
-        display: flex;
-    }
-    .info-img{
-        display: none;
-    }
-}
-
-@media only screen and (max-width: 375px) and (max-height: 667px) {
-    h1 {
-        font-size: 48px; /* Kleinerer Titel für iPhone SE */
-        margin-bottom: 16px;
-    }
-    body {
-        padding: 0;
-     
-    }
-
-    .game-info {
-        font-size: 18px; /* Kleinere Spielinfos für bessere Lesbarkeit */
-        padding: 15px;
-    }
-
-    .start-game-btn {
-        gap: 20px; /* Weniger Abstand zwischen Buttons */
-        top: 40px;
-    }
-
-    .info-img {
-        top: 15px;
-        left: 300px; /* Icon neu positionieren */
-        height: 40px;
-    }
-
-    .controllBar {
-        width: 100%;
-        gap: 20px;
-        padding-top: 10px;
-    }
-
-    #legal-links {
-        font-size: 12px; /* Kleinere Schriftgröße für Impressum & Datenschutz */
-        bottom: 5px;
-        padding: 3px 10px;
-    }
-
-    footer {
         display: flex;
         flex-direction: column;
+        justify-content: center;
         align-items: center;
-        gap: 10px;
-        font-size: 14px;
-        position: absolute;
-        bottom: 10px;
     }
 
-    .mobile-controll {
-        padding: 5px;
+    .mainContent {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0; 
     }
 
-    .mobile-btn img {
-        height: 28px; /* Kleinere Buttons für bessere Bedienung */
+    h1 {
+        display: none;
     }
 
-    .info-box {
-        padding: 10px;
+    .screen-border {
+        border-radius: 0px;
+        box-shadow: none;
     }
 
-    .reload-img {
-        height: 70px;
+    #startScreen {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 }
+

@@ -93,6 +93,19 @@ function checkMobileDevice() {
     }
 }
 
+function checkOrientation() {
+    if (window.innerHeight > window.innerWidth) {
+        document.getElementById('deviceNotice').style.display = 'flex';
+        document.getElementById('content').style.display = 'none'; // Verstecke das Spiel
+    } else {
+        document.getElementById('deviceNotice').style.display = 'none';
+        document.getElementById('content').style.display = 'block'; // Zeige das Spiel
+    }
+}
+
+window.addEventListener('resize', checkOrientation);
+window.addEventListener('load', checkOrientation);
+
 function showGameInfos() {
     document.getElementById('gameInfo').classList.remove('d-none');
 }
