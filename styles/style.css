@@ -12,7 +12,7 @@ body {
     height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     font-family: 'zabras', Arial, Helvetica, sans-serif;
     font-size: 32px;
@@ -192,6 +192,11 @@ footer {
     border-radius: 90%;
 }
 
+.dsp-flx{
+    display: flex;
+    justify-content: space-between;
+}
+
 .mobile-controll{
     width: 100%;
     padding: 0 10px 10px 10px;
@@ -298,7 +303,51 @@ cursor: pointer;
         padding: 0;
         display: flex;
         flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    .start-game-btn{
+        top:20px;
+        left:277px;
+    }
+    .mainContent {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
         justify-content: center;
+        align-items: center;
+        margin: 0; 
+    }
+
+    h1 {
+        display: none;
+    }
+
+    .screen-border {
+        border-radius: 0px;
+        box-shadow: none;
+    }
+
+ 
+
+    #startScreen {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media only screen and (min-width: 895px) and (max-height: 415px) {
+    html, body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
         align-items: center;
     }
 
@@ -328,5 +377,201 @@ cursor: pointer;
         justify-content: center;
         align-items: center;
     }
+
+    .start-game{
+        position: absolute;
+        left:370px;
+        width: 200px;
+        
+    }
+
+    .start-game-btn{
+        top:20px;
+    }
+
+    .info-img {
+        position: absolute;
+        top: 29px;
+        left: 700px;
+    }
 }
 
+@media only screen and (min-width: 844px) and (max-height: 395px) {
+
+
+    .mainContent {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0; 
+    }
+
+    h1 {
+        display: none;
+    }
+
+    .screen-border {
+        border-radius: 0px;
+        box-shadow: none;
+        width: 100vw;
+        height: 100vh;
+    }
+
+    #startScreen {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .start-game{
+        position: absolute;
+        left:370px;
+        width: 200px;
+        
+    }
+
+    .start-game-btn{
+        top:20px;
+    }
+
+    .info-img {
+        position: absolute;
+        top: 29px;
+        left: 700px;
+    }
+}
+
+@media only screen and (min-width: 932px) and (max-height: 430px) {
+    .mainContent {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0; 
+    }
+
+    h1 {
+        display: none;
+    }
+
+    .screen-border {
+        border-radius: 0px;
+        box-shadow: none;
+        width: 100vw;
+        height: 100vh;
+    }
+
+    #startScreen {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .start-game{
+        position: absolute;
+        left:370px;
+        width: 200px;
+        
+    }
+
+    .start-game-btn{
+        top:20px;
+    }
+
+    .info-img {
+        position: absolute;
+        top: 29px;
+        left: 700px;
+    }
+}
+
+@media only screen and (max-width: 740px) and (max-height: 360px) {
+
+    .info-img {
+        top: 17px;
+        left: 655px;
+    }
+
+    h1 {
+        display: none;
+    }
+
+    .screen-border {
+        border-radius: 0px;
+        box-shadow: none;
+        width: 100vw;
+        height: 100vh;
+    }
+
+    #startScreen {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .start-game{
+        position: absolute;
+        left:370px;
+        width: 200px;
+        
+    }
+
+    .start-game-btn{
+        top:20px;
+        left:-60px;
+    }
+
+}
+
+@media only screen and (max-width: 720px) and (max-height: 540px) {
+
+    .info-img {
+        top: 17px;
+        left: 588px;
+    }
+
+    h1 {
+        display: none;
+    }
+
+    .screen-border {
+        border-radius: 0px;
+        box-shadow: none;
+        width: 100vw;
+        height: 100vh;
+    }
+
+    #startScreen {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .start-game{
+        position: absolute;
+        left:370px;
+        width: 200px;
+        
+    }
+
+    .start-game-btn{
+        top:20px;
+        left:-60px;
+    }
+
+}
