@@ -15,13 +15,12 @@ function startGame() {
     initLevel();
     initGame();
     checkMobileDevice();
-    checkIsMuted();  // Check mute state before playing sounds
+    checkIsMuted(); 
     playBackgroundSound();
     sounds.push(background_sound, win_sound, lose_sound);
 }
 
 function playBackgroundSound(){
-// Play background sound only if not muted
 if (!isMuted) {
     background_sound.play();
 }

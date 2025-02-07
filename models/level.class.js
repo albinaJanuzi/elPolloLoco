@@ -5,14 +5,6 @@
  * It initializes and manages these elements within the level.
  */
 class Level{
-      /**
-     * @property {Array} bottles - Collectible bottles available in the level.
-     * @property {Array} coins - Collectible coins available in the level.
-     * @property {Array} enemies - List of enemy objects present in the level.
-     * @property {Array} clouds - Cloud objects for background animation.
-     * @property {Array} backgroundObjects - Static and dynamic background elements.
-     * @property {number} level_end_x - The x-coordinate marking the end of the level.
-     */
     bottles;
     coins;
     enemies;
