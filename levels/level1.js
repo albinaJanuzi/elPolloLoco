@@ -1,7 +1,14 @@
+/**
+ * Initializes Level 1 with various game objects such as bottles, coins, enemies, clouds, and background objects.
+ */
 let level1;
 
+/**
+ * Creates and initializes a new level with predefined game objects.
+ */
 function initLevel() {
     level1 = new Level(
+     
         [
             new Bottle(),
             new Bottle(),
@@ -13,6 +20,7 @@ function initLevel() {
             new Bottle(),
             new Bottle()
         ],
+
         [
             new Coin(300),
             new Coin(500),
@@ -23,6 +31,7 @@ function initLevel() {
             new Coin(1950),
             new Coin(2200)
         ],
+    
         [
             new Chicken(),
             new Chicken(),
@@ -34,11 +43,13 @@ function initLevel() {
             new ChickenSmall(),
             new ChickenSmall(),
         ],
+
         [
             new Cloud(300),
             new Cloud(1400),
             new Cloud(2500)
         ],
+       
         [
             new BackgroundObject('img/5_background/layers/air.png', 0),
             new BackgroundObject('img/5_background/layers/3_third_layer/1.png', 0),
