@@ -73,6 +73,7 @@ function loseGameElement(){
     document.getElementById('loseScreen').classList.remove('d-none');
     document.getElementById('mobileController').classList.add('d-none');
     document.getElementById('iconBar').classList.add('d-none');
+    document.getElementById('titleH1').classList.add('d-none');
 }
 
 /**
@@ -108,6 +109,7 @@ function winGameElement(){
     document.getElementById('winScreen').classList.remove('d-none');
     document.getElementById('mobileController').classList.add('d-none');
     document.getElementById('iconBar').classList.add('d-none');
+    document.getElementById('titleH1').classList.add('d-none');
 }
 
 window.addEventListener('resize', checkMobileDevice)
