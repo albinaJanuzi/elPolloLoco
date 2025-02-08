@@ -323,11 +323,23 @@ a:hover{
     }
 }
 
+@media only screen and (max-width:1366px) {
+body{
+    padding: 0;
+}
+
+    .screen-border{
+        width: 100vw;
+        height: 100vh;
+    }
+}
+
 @media only screen and (min-width:1024px) and (max-height:750px) {
 
     footer {
         display: none;
     }
+    
 }
 
 @media only screen and (max-height:480px) {
@@ -359,14 +371,30 @@ a:hover{
     .game-info {
         font-size: 20px;
     }
+    body{
+        justify-content: center;
+        padding: 0;
+    }
 }
 
-@media (orientation: portrait) and (max-width: 600px) {
+@media only screen and (max-height:820px) {
+    body{
+        justify-content: center;
+        padding: 0;
+    }
+}
+
+
+
+@media (orientation: portrait) and (max-width: 1024px) {
 
     #deviceNotice {
         display: flex;
     }
-    .info-img{
-        display: none;
+
+    body{
+        justify-content: center;
+        padding: 0;
     }
 }
+
