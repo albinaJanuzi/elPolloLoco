@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles/style.css">
     <link rel="icon" type="image/gif" href="img/4_enemie_boss_chicken/1_walk/G2.png">
     <title>El Pollo Loco</title>
@@ -45,7 +45,7 @@
         </div>
         <div id="startScreen">
             <div class="start-game-btn">
-                <div class="start-game">
+                <div>
                     <span onclick="startGame()">Start Game</span>
                 </div>
             </div>
@@ -57,57 +57,57 @@
                 <a href="./datenschutzerklaerung.html" target="_blank">Datenschutz</a>
             </div>
             <img src="img/9_intro_outro_screens/start/startscreen_1.png" class="screen-border" width="720" height="480">
-           
-        </div>
-        <div id="gameInfo" class="info-box d-none">
-            <div class="game-info">
-                <div class="title-hide-btn">
-                    <h2>How to Play - Keyboard</h2>
-                    <span onclick="hideGameInfos()"> X </span>
-                </div>
+            <div id="gameInfo" class="info-box d-none">
 
-                <table>
-                    <tbody>
-                        <tr>
-                            <td class="td-blue">Walk</td>
-                            <td>Left Arrow & Right Arrow </td>
-                            <td><img src="img/mobileLeft.png"> <img src="img/mobileRight.png"></td>
-                        </tr>
-                        <tr>
-                            <td class="td-blue">Jump</td>
-                            <td>Spacebar Keyboard</td>
-                            <td><img src="img/mobileJump.png"></td>
-                        </tr>
-                        <tr>
-                            <td class="td-blue">Throw Bottle</td>
-                            <td>'D' Letter Keyboard</td>
-                            <td><img src="img/mobileThrow.png"></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <h2>Game Info</h2>
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>1. </td>
-                            <td>Collect bottles to throw at the chickens.</td>
-                        </tr>
-                        <tr>
-                            <td>2. </td>
-                            <td>Collect coins to restore the health bar to 100%.</td>
-                        </tr>
-                        <tr>
-                            <td>3. </td>
-                            <td>There are two types of chickens (normal, small). Both types can be defeated with a
-                                single bottle.</td>
-                        </tr>
-                        <tr>
-                            <td>4. </td>
-                            <td>At the end of the game, the Endboss appears with its own health bar and can be
-                                defeated after 4 bottle hits.</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="game-info">
+                    <div class="title-hide-btn">
+                        <h2>How to Play - Keyboard</h2>
+                        <span onclick="hideGameInfos()"> X </span>
+                    </div>
+
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td class="td-blue">Walk</td>
+                                <td>Left Arrow & Right Arrow </td>
+                                <td><img src="img/mobileLeft.png"> <img src="img/mobileRight.png"></td>
+                            </tr>
+                            <tr>
+                                <td class="td-blue">Jump</td>
+                                <td>Spacebar Keyboard</td>
+                                <td><img src="img/mobileJump.png"></td>
+                            </tr>
+                            <tr>
+                                <td class="td-blue">Throw Bottle</td>
+                                <td>'D' Letter Keyboard</td>
+                                <td><img src="img/mobileThrow.png"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h2>Game Info</h2>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>1. </td>
+                                <td>Collect bottles to throw at the chickens.</td>
+                            </tr>
+                            <tr>
+                                <td>2. </td>
+                                <td>Collect coins to restore the health bar to 100%.</td>
+                            </tr>
+                            <tr>
+                                <td>3. </td>
+                                <td>There are two types of chickens (normal, small). Both types can be defeated with a
+                                    single bottle.</td>
+                            </tr>
+                            <tr>
+                                <td>4. </td>
+                                <td>At the end of the game, the Endboss appears with its own health bar and can be
+                                    defeated after 4 bottle hits.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
         <div id="winScreen" class="d-none">
@@ -148,7 +148,7 @@
         </div>
     </div>
    
-    <div id="deviceNotice" style="display: none;">
+    <div id="deviceNotice">
         <span>Flip your device to join the adventure!</span>
     </div>
 </body>

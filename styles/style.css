@@ -4,15 +4,16 @@
 }  
 
 * {
-    box-sizing: content-box;
+    box-sizing: border-box;
     margin: 0;
 }
 
 body {
     height: 100vh;
+    padding-top: 50px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     font-family: 'zabras', Arial, Helvetica, sans-serif;
     font-size: 32px;
@@ -35,7 +36,7 @@ h1 {
 }
 
 .mainContent {
-    position: relative;
+    position: fixed;
 }
 
 .screen-border {
@@ -62,6 +63,7 @@ h1 {
 }
 
 .start-game-btn{
+    width: 100%;
     position: absolute;
     top: 55px;
     left: 10px;
@@ -192,11 +194,6 @@ footer {
     border-radius: 90%;
 }
 
-.dsp-flx{
-    display: flex;
-    justify-content: space-between;
-}
-
 .mobile-controll{
     width: 100%;
     padding: 0 10px 10px 10px;
@@ -225,7 +222,6 @@ footer {
 
     img {
         height: 36px;
-        padding-right: 10px;
     }
 }
 
@@ -245,6 +241,42 @@ td img{
 cursor: pointer;
 }
 
+a{
+    padding-left: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color:black;
+    text-decoration: none;
+    font-size:20px;
+}
+
+a:hover{
+    text-decoration: underline;
+    color:blue;
+}
+
+#deviceNotice {
+    background-image: url('../img/desert.png');
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+    display: none;
+
+    img {
+        height: 120px;
+    }
+
+    span {
+        font-size: 34px;
+        text-align: center;
+    }
+}
+
 #legal-links {
     position: absolute;
     bottom: 10px;
@@ -259,82 +291,82 @@ cursor: pointer;
     font-family: 'Times New Roman', Times, serif;
     font-size: 15px;
 }
-
 #legal-links a {
     color: white;
     text-decoration: none;
+    font-size:20px;
     margin: 0 10px;
 }
 
-#legal-links a:hover {
-    text-decoration: underline;
-    color: yellow;
-}
+/*RESPONSIVE*/
 
-#deviceNotice {
-    background-image: url('../img/desert.png');
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    color: black;
-    font-size: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    z-index: 999;
+@media only screen and (max-width:720px) {
 
-    span {
-        font-size: 30px;
-        text-align: center;
+
+    .mainContent,
+    .screen-border,
+    canvas {
+        box-shadow: none;
+        border-radius: 0px;
+        
     }
 
-}
-
-
-@media only screen and (max-width:950px) and (max-height:550px){
-    html, body {
-        margin: 0;
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: center;
-    }
-
-    .start-game-btn{
-        top:20px;
-        left:277px;
-    }
-    .mainContent {
-        width: 100vw;
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 0; 
-    }
-
-    h1 {
+    h1,
+    .controllBar,
+    
+    footer {
         display: none;
     }
 
-    .screen-border {
-        border-radius: 0px;
-        box-shadow: none;
+    .info-img{
+        left:600px;
+    }
+}
+
+@media only screen and (min-width:1024px) and (max-height:750px) {
+
+    footer {
+        display: none;
+    }
+}
+
+@media only screen and (max-height:480px) {
+
+    body,
+    .mainContent,
+    .screen-border,
+    canvas {
         height: 100vh;
-        width: 100vw;
+        padding: 0;
     }
 
+    h1,
+    #fullscreen,
+    .controllBar,
+    footer {
+        display: none;
+    }
+
+    #startScreen,
+    #winScreen,
+    #loseScreen {
+        height: 100%;
+    }
 
 }
 
+@media only screen and (max-height:400px) {
+    .game-info {
+        font-size: 20px;
+    }
+}
 
+@media (orientation: portrait) and (max-width: 600px) {
 
-  
-
-
+    #deviceNotice {
+        display: flex;
+    }
+    .info-img{
+        display: none;
+    }
+}

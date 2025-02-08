@@ -16,6 +16,7 @@ function startGame() {
     initGame();
     checkIsMuted(); 
     playBackgroundSound();
+    checkMobileDevice();
     sounds.push(background_sound, win_sound, lose_sound);
 }
 
@@ -82,23 +83,16 @@ function winGameElement(){
 }
 
 
-function checkOrientation() {
-    let deviceNotice = document.getElementById('deviceNotice');
+window.addEventListener('resize', checkMobileDevice)
 
-    if (window.matchMedia("(any-pointer: coarse)").matches) { // Prüft, ob ein Touchscreen-Gerät verwendet wird
-        if (window.innerWidth < window.innerHeight) {
-            deviceNotice.style.display = 'flex';
-        } else {
-            deviceNotice.style.display = 'none';
-        }
+function checkMobileDevice() {
+    let canvas = document.getElementById('canvas');
+    if (window.matchMedia("(any-pointer: coarse)").matches && !canvas.classList.contains('d-none')) {
+        document.getElementById('mobileController').classList.remove('d-none');
     } else {
-        deviceNotice.style.display = 'none'; // Falls es kein mobiles Gerät ist, die Nachricht ausblenden
+        document.getElementById('mobileController').classList.add('d-none');
     }
 }
-
-// Event-Listener für Bildschirmrotation
-window.addEventListener('resize', checkOrientation);
-window.addEventListener('load', checkOrientation);
 
 
 function showGameInfos() {
