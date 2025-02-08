@@ -10,10 +10,9 @@
 
 body {
     height: 100vh;
-    padding-top: 50px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     font-family: 'zabras', Arial, Helvetica, sans-serif;
     font-size: 32px;
@@ -94,11 +93,6 @@ h1 {
     }
 }
 
-.info-img{
-    position: absolute;
-    top: 29px;
-    left: 600px;
-}
 
 .info-img:hover{
     cursor: pointer;
@@ -334,12 +328,16 @@ body{
     }
 }
 
-@media only screen and (min-width:1024px) and (max-height:750px) {
-
-    footer {
-        display: none;
+@media only screen and (max-width:1024px) and (max-height:600px) {
+    .start-game-btn{
+        top:20px;
     }
-    
+}
+
+@media only screen and (max-width:667px) and (max-height:375px) {
+    .start-game-btn{
+        top:20px;
+    }
 }
 
 @media only screen and (max-height:480px) {
@@ -386,6 +384,8 @@ body{
 
 
 
+
+
 @media (orientation: portrait) and (max-width: 1024px) {
 
     #deviceNotice {
@@ -397,4 +397,5 @@ body{
         padding: 0;
     }
 }
+
 
