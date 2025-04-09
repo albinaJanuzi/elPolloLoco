@@ -123,7 +123,7 @@ h1 {
     border-radius: 20px;
     letter-spacing: 1.5px;
     margin: 0 50px;
-    padding: 25px 25px;
+    padding: 10px 10px;
     gap: 20px;
 }
 
@@ -292,6 +292,57 @@ a:hover{
     margin: 0 10px;
 }
 
+.home-link:hover{
+    color:white;
+}
+
+.imprint-info{
+    display: flex;
+    flex-direction: column;
+    gap:20px;
+}
+
+
+.daten-info{
+    display: flex;
+    flex-direction: column;
+    gap:5px;
+    width: auto;
+    height: 700px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+    
+    border-radius: 20px;
+  
+    overflow-y: auto; /* Scrollbar bei zu viel Text */
+    overflow-x: hidden; /* kein horizontales Scrollen */
+}
+
+.daten-info::-webkit-scrollbar,
+.game-info::-webkit-scrollbar {
+    width: 12px;              /* Breite der Scrollbar */
+}
+
+.daten-info::-webkit-scrollbar-track,
+.game-info::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.2); /* Hintergrund der Scroll-Leiste */
+    border-radius: 10px;
+}
+
+.daten-info::-webkit-scrollbar-thumb,
+.game-info::-webkit-scrollbar-thumb {
+    background-color: #FFCA1B; /* Farbe des "Griffs" */
+    border-radius: 10px;
+    border: 2px solid rgba(0, 0, 0, 0.3); /* optionaler Rahmen für besseren Kontrast */
+}
+
+.daten-info::-webkit-scrollbar-thumb:hover,
+.game-info::-webkit-scrollbar-thumb:hover {
+    background-color: #e6b300;
+}
+
+
 /*RESPONSIVE*/
 
 @media only screen and (max-width:720px) {
@@ -382,10 +433,6 @@ body{
     }
 }
 
-
-
-
-
 @media (orientation: portrait) and (max-width: 1024px) {
 
     #deviceNotice {
@@ -399,3 +446,16 @@ body{
 }
 
 
+@media only screen and (max-width:400px) {
+    .imprint-info{
+        font-size:20px;
+    }
+
+    .imprint-info a{
+        font-size: 18px;
+    }
+
+    .imprint-info h2{
+        font-size: 30px;
+    }
+}
